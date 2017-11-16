@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset name="section1" label="Liste abaixo">
+		<field name="nome_evento" type="text" class="inputbox span4" filter="raw"
+		       label="Nome do evento"/>
+		<field name="ano_evento" type="text" class="inputbox span4" label="Ano do evento"/>
+	</fieldset>
+</form>

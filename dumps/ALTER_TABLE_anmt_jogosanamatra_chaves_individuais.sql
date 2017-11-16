@@ -1,0 +1,1 @@
+ALTER TABLE `anmt_jogosanamatra_chaves_individuais` ADD `jogo_numero` DOUBLE NULL AFTER `observacoes`;

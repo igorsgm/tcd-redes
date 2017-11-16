@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="created_by" default="0" label="COM_ASSOCIADOS_FORM_LBL_EVENTO_CREATED_BY" description="COM_ASSOCIADOS_FORM_DESC_EVENTO_CREATED_BY" hidden="true" hint="COM_ASSOCIADOS_FORM_LBL_EVENTO_CREATED_BY"/>
+    <field name="modified_by" default="0" label="COM_ASSOCIADOS_FORM_LBL_EVENTO_MODIFIED_BY" description="COM_ASSOCIADOS_FORM_DESC_EVENTO_MODIFIED_BY" hidden="true" hint="COM_ASSOCIADOS_FORM_LBL_EVENTO_MODIFIED_BY"/>
+    <field name="evento_tipo" type="list" required="true" label="COM_ASSOCIADOS_FORM_LBL_EVENTO_EVENTO_TIPO" description="COM_ASSOCIADOS_FORM_DESC_EVENTO_EVENTO_TIPO" hint="COM_ASSOCIADOS_FORM_LBL_EVENTO_EVENTO_TIPO">
+      <option value="jogos">COM_ASSOCIADOS_EVENTOS_EVENTO_TIPO_OPTION_JOGOS</option>
+      <option value="conamat">COM_ASSOCIADOS_EVENTOS_EVENTO_TIPO_OPTION_CONAMAT</option>
+      <option value="aposentados">COM_ASSOCIADOS_EVENTOS_EVENTO_TIPO_OPTION_APOSENTADOS</option>
+      <option value="internacional">COM_ASSOCIADOS_EVENTOS_EVENTO_TIPO_OPTION_INTERNACIONAL</option>
+      <option value="outros">COM_ASSOCIADOS_EVENTOS_EVENTO_TIPO_OPTION_OUTROS</option>
+    </field>
+    <field name="evento_ano" type="text" filter="raw" required="true" label="COM_ASSOCIADOS_FORM_LBL_EVENTO_EVENTO_ANO" description="COM_ASSOCIADOS_FORM_DESC_EVENTO_EVENTO_ANO" hint="COM_ASSOCIADOS_FORM_LBL_EVENTO_EVENTO_ANO"/>
+    <field name="evento_local" type="text" filter="raw" required="true" label="COM_ASSOCIADOS_FORM_LBL_EVENTO_EVENTO_LOCAL" description="COM_ASSOCIADOS_FORM_DESC_EVENTO_EVENTO_LOCAL" hint="COM_ASSOCIADOS_FORM_LBL_EVENTO_EVENTO_LOCAL"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fieldset name="section1" label="Dependentes">
+        <field name="dependente_nome" disabled="true" type="text" class="inputbox span4" filter="raw" label="Nome"/>
+		<field name="dependente_parentesco" disabled="true" type="list" label="Grau de parentesco" description="Grau de parentesco" hint="Grau de parentesco" class="inputbox span4">
+		      <option value="01">Cônjuge</option>
+		      <option value="02">Filho(a)</option>
+		      <!--<option value="2">Enteado(a)</option>-->
+		      <!--<option value="3">Pai/Mãe</option>-->
+		      <!--<option value="4">Avô/Avó</option>-->
+		</field>
+        <field name="dependente_cpf" disabled="true" type="text" class="inputbox span4" filter="raw" label="CPF"/>
+        <field name="dependente_nascimento" disabled="true" type="text" class="inputbox span4" filter="raw" label="Data de nascimento"/>
+    </fieldset>
+</form>

@@ -1,0 +1,70 @@
+.icon-48-associados {
+      background-image: url(../images/l_associados.png);
+      padding-left:60px!important;
+}
+
+.icon-48-associado {
+      background-image: url(../images/l_associados.png);
+      padding-left:60px!important;
+}
+
+.color-box-associados { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-situacoes {
+      background-image: url(../images/l_situacoes.png);
+      padding-left:60px!important;
+}
+
+.icon-48-situacao {
+      background-image: url(../images/l_situacoes.png);
+      padding-left:60px!important;
+}
+
+.color-box-situacoes { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-eventos {
+      background-image: url(../images/l_eventos.png);
+      padding-left:60px!important;
+}
+
+.icon-48-evento {
+      background-image: url(../images/l_eventos.png);
+      padding-left:60px!important;
+}
+
+.color-box-eventos { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-cidades {
+      background-image: url(../images/l_cidades.png);
+      padding-left:60px!important;
+}
+
+.icon-48-cidade {
+      background-image: url(../images/l_cidades.png);
+      padding-left:60px!important;
+}
+
+.color-box-cidades { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-estados {
+      background-image: url(../images/l_estados.png);
+      padding-left:60px!important;
+}
+
+.icon-48-estado {
+      background-image: url(../images/l_estados.png);
+      padding-left:60px!important;
+}
+
+.color-box-estados { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+
+
+.other-filters{
+    padding: 0 14px;
+}

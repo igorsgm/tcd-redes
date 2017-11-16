@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+        <field name="state" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" disabled="true"
+               class="inputbox" size="1" default="0">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASHED</option>
+        </field>
+        <field name="user_id" type="text" disabled="true" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_USER_ID"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_USER_ID"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_USER_ID"/>
+        <field name="state_anamatra" readonly="true" class="readonly" type="list" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_STATE_ANAMATRA"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_STATE_ANAMATRA"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_STATE_ANAMATRA">
+            <option value="01">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_01</option>
+            <option value="02">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_02</option>
+            <option value="03">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_03</option>
+            <option value="04">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_04</option>
+            <option value="05">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_05</option>
+            <option value="06">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_06</option>
+        </field>
+        <field name="state_amatra" readonly="true" class="readonly" type="list" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_STATE_AMATRA"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_STATE_AMATRA"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_STATE_AMATRA">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_1</option>
+            <option value="2">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_2</option>
+            <option value="3">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_3</option>
+        </field>
+
+
+        <!-- <field name="amatra" type="category" extension="com_associados" required="true" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_AMATRA" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_AMATRA" hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_AMATRA"/> -->
+
+        <!-- <field name="amatra" type="sql" query="SELECT * FROM anmt_usergroups WHERE `parent_id` = 10 and `id` BETWEEN 12 and 36 order by id" key_field="id" value_field="title" multiple="false" required="true" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_AMATRA" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_AMATRA" hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_AMATRA"/> -->
+
+        <field name="amatra" readonly="true" class="readonly" type="sql" query="SELECT
+u.id, u.title, u.parent_id,
+c.id AS catid, c.title AS catitle
+FROM anmt_usergroups AS u, anmt_categories AS c
+WHERE u.title = c.title
+AND u.parent_id = 10
+AND u.id BETWEEN 12 AND 36
+ORDER BY u.id" key_field="catid" value_field="catitle" multiple="false" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_AMATRA" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_AMATRA"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_AMATRA"/>
+
+        <field name="situacao_do_associado" readonly="true" class="readonly" type="foreignkey"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_SITUACAO_DO_ASSOCIADO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_SITUACAO_DO_ASSOCIADO" input_type="list"
+               table="#__associados_situacao" key_field="id" value_field="situacao_nome" default="0"/>
+        <field name="tratamento" readonly="true" class="readonly" type="list"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_TRATAMENTO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_TRATAMENTO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_TRATAMENTO">
+            <option value="Exmoa_Senhora">COM_ASSOCIADOS_ASSOCIADOS_TRATAMENTO_OPTION_EXMOA_SENHORA</option>
+            <option value="Exmoa_Senhora_Ministroa">
+                COM_ASSOCIADOS_ASSOCIADOS_TRATAMENTO_OPTION_EXMOA_SENHORA_MINISTROA
+            </option>
+            <option value="Exmoa_Juiza_do_Trabalho_Titular">
+                COM_ASSOCIADOS_ASSOCIADOS_TRATAMENTO_OPTION_EXMO.A_JUIZA_DO_TRABALHO_TITULAR
+            </option>
+            <option value="Exmoa_Juiza_do_Trabalho_Substitutoa">
+                COM_ASSOCIADOS_ASSOCIADOS_TRATAMENTO_OPTION_EXMO.A_JUIZA_DO_TRABALHO_SUBSTITUTOA
+            </option>
+            <option value="Exmoa_Senhora_Desembargadora_do_Trabalho">
+                COM_ASSOCIADOS_ASSOCIADOS_TRATAMENTO_OPTION_EXMOA_SENHORA_DESEMBARGADORA_DO_TRABALHO
+            </option>
+            <option value="Exmoa_Senhora_Juiza_Substitutoa_Auxiliar">
+                COM_ASSOCIADOS_ASSOCIADOS_TRATAMENTO_OPTION_EXMOA_SENHORA_JUIZA_SUBSTITUTOA_AUXILIAR
+            </option>
+        </field>
+        <field name="nome" readonly="true" class="readonly" type="text" filter="raw" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NOME" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_NOME"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NOME"/>
+        <field name="email" readonly="true" class="readonly" type="email" validate="email" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EMAIL" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EMAIL"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EMAIL"/>
+        <field name="nascimento" readonly="true" class="readonly" type="text" filter="none"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NASCIMENTO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_NASCIMENTO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NASCIMENTO"/>
+        <field name="naturalidade" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NATURALIDADE"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_NATURALIDADE"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NATURALIDADE"/>
+        <field name="sexo" readonly="true" class="readonly" type="list" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_SEXO" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_SEXO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_SEXO">
+            <option value="01">COM_ASSOCIADOS_ASSOCIADOS_SEXO_OPTION_01</option>
+            <option value="02">COM_ASSOCIADOS_ASSOCIADOS_SEXO_OPTION_02</option>
+        </field>
+        <field name="cpf" readonly="true" class="readonly" type="text" filter="raw" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CPF" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_CPF"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CPF"/>
+        <field name="rg" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RG" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_RG"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RG"/>
+        <field name="orgao_expeditor" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ORGAO_EXPEDITOR"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_ORGAO_EXPEDITOR"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ORGAO_EXPEDITOR"/>
+        <field name="data_emissao" readonly="true" class="readonly" type="text" filter="none"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DATA_EMISSAO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_DATA_EMISSAO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DATA_EMISSAO"/>
+        <field name="dt_ingresso_magistratura" readonly="true" class="readonly" type="text" filter="none"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DT_INGRESSO_MAGISTRATURA"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_DT_INGRESSO_MAGISTRATURA"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DT_INGRESSO_MAGISTRATURA"/>
+        <field name="dt_filiacao_anamatra" readonly="true" class="readonly" type="text"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DT_FILIACAO_ANAMATRA"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_DT_FILIACAO_ANAMATRA"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DT_FILIACAO_ANAMATRA"/>
+        <field name="tribunal" readonly="true" class="readonly" type="list"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_TRIBUNAL"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_TRIBUNAL"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_TRIBUNAL">
+            <option value="">Selecione o tribunal</option>
+            <option value="TRT 1">TRT 1</option>
+            <option value="TRT 2">TRT 2</option>
+            <option value="TRT 3">TRT 3</option>
+            <option value="TRT 4">TRT 4</option>
+            <option value="TRT 5">TRT 5</option>
+            <option value="TRT 6">TRT 6</option>
+            <option value="TRT 7">TRT 7</option>
+            <option value="TRT 8">TRT 8</option>
+            <option value="TRT 9">TRT 9</option>
+            <option value="TRT 10">TRT 10</option>
+            <option value="TRT 11">TRT 11</option>
+            <option value="TRT 12">TRT 12</option>
+            <option value="TRT 13">TRT 13</option>
+            <option value="TRT 14">TRT 14</option>
+            <option value="TRT 15">TRT 15</option>
+            <option value="TRT 16">TRT 16</option>
+            <option value="TRT 17">TRT 17</option>
+            <option value="TRT 18">TRT 18</option>
+            <option value="TRT 19">TRT 19</option>
+            <option value="TRT 20">TRT 20</option>
+            <option value="TRT 21">TRT 21</option>
+            <option value="TRT 22">TRT 22</option>
+            <option value="TRT 23">TRT 23</option>
+            <option value="TRT 24">TRT 24</option>
+        </field>
+
+
+        <field type="radio" name="dirigente" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DIRIGENTE"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_DIRIGENTE"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DIRIGENTE" disabled="true" class="btn-group btn-group-yesno"
+               default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_POSSUI_DEPENDENTES_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_POSSUI_DEPENDENTES_OPTION_1</option>
+        </field>
+
+        <field name="cargo" readonly="true" class="readonly" type="list" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CARGO" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_CARGO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CARGO">
+            <option value="Juiza_do_Trabalho_Titular">COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_JUIZA_DO_TRABALHO_TITULAR
+            </option>
+            <option value="Juiza_do_Trabalho_Substitutoa">
+                COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_JUIZA_DO_TRABALHO_SUBSTITUTOA
+            </option>
+            <option value="Desembargadora_do_Trabalho">
+                COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_DESEMBARGADORA_DO_TRABALHO
+            </option>
+            <option value="Ministroa">COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_MINISTROA</option>
+            <option value="Juiza_Substitutoa_Auxiliar">
+                COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_JUIZA_SUBSTITUTOA_AUXILIAR
+            </option>
+            <option value="Pensionista">COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_PENSIONISTA</option>
+            <option value="Associado_Honorario">COM_ASSOCIADOS_ASSOCIADOS_CARGO_OPTION_ASSOCIADO_HONORARIO</option>
+        </field>
+        <field name="cargo_associado_honorario" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CARGO_ASSOCIADO_HONORARIO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_CARGO_ASSOCIADO_HONORARIO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CARGO_ASSOCIADO_HONORARIO"/>
+        <field name="estado_civil" readonly="true" class="readonly" type="list"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ESTADO_CIVIL"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_ESTADO_CIVIL"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ESTADO_CIVIL">
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_ESTADO_CIVIL_OPTION_1</option>
+            <option value="2">COM_ASSOCIADOS_ASSOCIADOS_ESTADO_CIVIL_OPTION_2</option>
+            <option value="3">COM_ASSOCIADOS_ASSOCIADOS_ESTADO_CIVIL_OPTION_3</option>
+            <option value="4">COM_ASSOCIADOS_ASSOCIADOS_ESTADO_CIVIL_OPTION_4</option>
+        </field>
+        <field name="endereco" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ENDERECO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_ENDERECO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ENDERECO"/>
+        <field name="logradouro" type="list" readonly="true" class="readonly"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_LOGRADOURO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_LOGRADOURO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_LOGRADOURO">
+            <option value="1">Alameda</option>
+            <option value="2">Área</option>
+            <option value="3">Avenida</option>
+            <option value="4">Campo</option>
+            <option value="5">Chácara</option>
+            <option value="6">Colônia</option>
+            <option value="7">Condomínio</option>
+            <option value="8">Conjunto</option>
+            <option value="9">Distrito</option>
+            <option value="10">Esplanada</option>
+            <option value="11">Estação</option>
+            <option value="12">Estrada</option>
+            <option value="13">Favela</option>
+            <option value="14">Feira</option>
+            <option value="15">Jardim</option>
+            <option value="16">Ladeira</option>
+            <option value="17">Lago</option>
+            <option value="18">Lagoa</option>
+            <option value="19">Largo</option>
+            <option value="20">Loteamento</option>
+            <option value="21">Morro</option>
+            <option value="22">Núcleo</option>
+            <option value="23">Parque</option>
+            <option value="24">Passarela</option>
+            <option value="25">Pátio</option>
+            <option value="26">Praça</option>
+            <option value="27">Quadra</option>
+            <option value="28">Recanto</option>
+            <option value="29">Residencial</option>
+            <option value="30">Rodovia</option>
+            <option value="31">Rua</option>
+            <option value="32">Setor</option>
+            <option value="33">Sítio</option>
+            <option value="34">Travessa</option>
+            <option value="35">Trecho</option>
+            <option value="36">Trevo</option>
+            <option value="37">Vale</option>
+            <option value="38">Vereda</option>
+            <option value="39">Via</option>
+            <option value="40">Viaduto</option>
+            <option value="41">Viela</option>
+            <option value="42">Vila</option>
+        </field>
+        <field name="numero" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NUMERO" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_NUMERO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_NUMERO"/>
+        <field name="complemento" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_COMPLEMENTO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_COMPLEMENTO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_COMPLEMENTO"/>
+        <field name="bairro" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_BAIRRO" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_BAIRRO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_BAIRRO"/>
+        <field name="estado" disabled="true" type="foreignkey" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_ESTADO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_ESTADO" input_type="list" table="#__estado"
+               key_field="id" value_field="sig_estado" required="true" default=""/>
+        <field name="cidade" readonly="true" class="readonly" type="foreignkey"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CIDADE" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_CIDADE"
+               input_type="list" table="#__cidades" key_field="id" value_field="nm_cidade" required="true" default=""/>
+        <field name="cep" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CEP" description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_CEP"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CEP"/>
+        <field name="observacoes" readonly="true" class="readonly" type="textarea" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_OBSERVACOES"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_OBSERVACOES"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_OBSERVACOES"/>
+        <field name="email_alternativo" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EMAIL_ALTERNATIVO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EMAIL_ALTERNATIVO"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EMAIL_ALTERNATIVO"/>
+        <field name="fone_residencial" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_RESIDENCIAL"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_FONE_RESIDENCIAL"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_RESIDENCIAL"/>
+        <field name="fone_comercial" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_COMERCIAL"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_FONE_COMERCIAL"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_COMERCIAL"/>
+        <field name="fone_celular" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_CELULAR"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_FONE_CELULAR"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_CELULAR"/>
+        <field name="fone_fax" readonly="true" class="readonly" type="text" filter="raw"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_FAX"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_FONE_FAX"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FONE_FAX"/>
+        <field name="possui_dependentes" disabled="true" type="radio" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_POSSUI_DEPENDENTES"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_POSSUI_DEPENDENTES"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_POSSUI_DEPENDENTES" class="btn-group btn-group-yesno"
+               default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_POSSUI_DEPENDENTES_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_POSSUI_DEPENDENTES_OPTION_1</option>
+        </field>
+
+
+        <field name="dependentes" readonly="true" class="readonly" showon="possuidependentes:1" type="subform"
+               formsource="/administrator/components/com_associados/models/forms/dependentes.xml"
+               min="1" max="50" multiple="true"
+               layout="joomla.form.field.subform.repeatable-table" groupByFieldset="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_DEPENDENTES"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_DEPENDENTES"/>
+
+
+        <field name="eventos_que_participou_jogos_nacionais" readonly="true" class="readonly" type="sql"
+               query="SELECT * FROM `anmt_associados_eventos` WHERE `state` = 1 AND `evento_tipo` LIKE 'jogos'"
+               key_field="id" value_field="evento_ano" multiple="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_JOGOS_NACIONAIS"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_JOGOS_NACIONAIS"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_JOGOS_NACIONAIS"/>
+        <field name="eventos_que_participou_conamat" readonly="true" class="readonly" type="sql"
+               query="SELECT * FROM `anmt_associados_eventos` WHERE `state` = 1 AND `evento_tipo` LIKE 'conamat'"
+               key_field="id" value_field="evento_ano" multiple="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_CONAMAT"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_CONAMAT"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_CONAMAT"/>
+        <field name="eventos_que_participou_congresso_internacional" readonly="true" class="readonly" type="sql"
+               query="SELECT * FROM `anmt_associados_eventos` WHERE `state` = 1 AND `evento_tipo` LIKE 'internacional'"
+               key_field="id" value_field="evento_ano" multiple="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_CONGRESSO_INTERNACIONAL"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_CONGRESSO_INTERNACIONAL"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_CONGRESSO_INTERNACIONAL"/>
+        <field name="eventos_que_participou_encontro_aposentados" readonly="true" class="readonly" type="sql"
+               query="SELECT * FROM `anmt_associados_eventos` WHERE `state` = 1 AND `evento_tipo` LIKE 'aposentados'"
+               key_field="id" value_field="evento_ano" multiple="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_ENCONTRO_APOSENTADOS"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_ENCONTRO_APOSENTADOS"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_ENCONTRO_APOSENTADOS"/>
+        <field name="eventos_que_participou_outros" disabled="true" type="radio"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_OUTROS"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_OUTROS"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_OUTROS" class="btn-group btn-group-yesno"
+               default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_EVENTOS_QUE_PARTICIPOU_OUTROS_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_EVENTOS_QUE_PARTICIPOU_OUTROS_OPTION_1</option>
+        </field>
+
+
+        <field name="eventos_que_participou_outros_descricao" type="subform"
+               formsource="/administrator/components/com_associados/models/forms/outros_eventos.xml"
+               min="1" max="50" multiple="true"
+               layout="joomla.form.field.subform.repeatable-table" groupByFieldset="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_OUTROS_DESCRICAO"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_EVENTOS_QUE_PARTICIPOU_OUTROS_DESCRICAO"/>
+
+
+        <field name="receber_correspondencia" disabled="true" type="radio" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RECEBER_CORRESPONDENCIA"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_RECEBER_CORRESPONDENCIA"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RECEBER_CORRESPONDENCIA" class="btn-group btn-group-yesno"
+               default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_CORRESPONDENCIA_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_CORRESPONDENCIA_OPTION_1</option>
+        </field>
+        <field name="receber_newsletter" disabled="true" type="radio" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RECEBER_NEWSLETTER"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_RECEBER_NEWSLETTER"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RECEBER_NEWSLETTER" class="btn-group btn-group-yesno"
+               default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_NEWSLETTER_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_NEWSLETTER_OPTION_1</option>
+        </field>
+        <field name="receber_sms" disabled="true" type="radio" required="true"
+               label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RECEBER_SMS"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_RECEBER_SMS"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_RECEBER_SMS" class="btn-group btn-group-yesno" default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_SMS_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_SMS_OPTION_1</option>
+        </field>
+        <field name="filiado_amb" disabled="true" type="radio" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FILIADO_AMB"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_FILIADO_AMB"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_FILIADO_AMB" class="btn-group btn-group-yesno" default="0">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_FILIADO_AMB_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_FILIADO_AMB_OPTION_1</option>
+        </field>
+        <field name="checked_out" readonly="true" class="readonly" type="hidden" filter="unset"/>
+        <field name="checked_out_time" readonly="true" class="readonly" default="0000-00-00 00:00:00" type="hidden"
+               filter="unset"/>
+        <field name="created_by" default="0" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CREATED_BY"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_CREATED_BY"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_CREATED_BY" readonly="true" class="readonly"/>
+
+        <field type="radio" name="forma_associacao" label="Associado a"
+               description="Escolha uma forma de associação"
+               hint="Associado a" disabled="true"
+               default="0">
+            <option value="0">Associado a Amatra</option>
+            <option value="1">Associado a Amatra e Anamatra</option>
+            <option value="99">Vazio (Provisório)</option>
+        </field>
+
+        <field name="protheus" type="text" label="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_PROTHEUS"
+               description="COM_ASSOCIADOS_FORM_DESC_ASSOCIADO_PROTHEUS"
+               hint="COM_ASSOCIADOS_FORM_LBL_ASSOCIADO_PROTHEUS" readonly="true" class="readonly"/>
+
+        <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
+               description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+        <field name="filter_state_anamatra" disabled="true" readonly="true" class="readonly" type="list"
+               onchange="this.form.submit();">
+            <option value="01">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_01</option>
+            <option value="02">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_02</option>
+            <option value="03">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_03</option>
+            <option value="04">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_04</option>
+            <option value="05">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_05</option>
+            <option value="06">COM_ASSOCIADOS_ASSOCIADOS_STATE_ANAMATRA_OPTION_06</option>
+        </field>
+        <field name="filter_state_amatra" disabled="true" readonly="true" class="readonly" type="list"
+               onchange="this.form.submit();">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_1</option>
+            <option value="2">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_2</option>
+            <option value="3">COM_ASSOCIADOS_ASSOCIADOS_STATE_AMATRA_OPTION_3</option>
+        </field>
+        <field name="filter_amatra" readonly="true" class="readonly" type="category" extension="com_associados"
+               show_root="1" onchange="this.form.submit();"/>
+        <field name="filter_receber_newsletter" type="list" onchange="this.form.submit();">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_NEWSLETTER_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_NEWSLETTER_OPTION_1</option>
+        </field>
+        <field name="filter_receber_sms" type="list" onchange="this.form.submit();">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_SMS_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_SMS_OPTION_1</option>
+        </field>
+
+        <field name="filter_forma_associado" type="list" onchange="this.form.submit();">
+            <option value="0">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_SMS_OPTION_0</option>
+            <option value="1">COM_ASSOCIADOS_ASSOCIADOS_RECEBER_SMS_OPTION_1</option>
+        </field>
+        <field name="filter_situacao_do_associado" type="sql"
+               query="SELECT '' AS `id`, '- Situação do Associado -' AS `val` UNION SELECT `id`, `situacao_nome` AS val FROM `#__associados_situacao`"
+               key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+
+    </fieldset>
+</form>

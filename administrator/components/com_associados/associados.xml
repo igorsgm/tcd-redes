@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+    <name>com_associados</name>
+    <creationDate>2016-09-07</creationDate>
+    <copyright>2016 Trídia Criação</copyright>
+    <license>GNU General Public License versão 2 ou posterior; consulte o arquivo License. txt</license>
+    <author>Trídia Criação</author>
+    <authorEmail>atendimento@tridiacriacao.com</authorEmail>
+    <authorUrl>http://www.tridiacriacao.com</authorUrl>
+    <version>CVS: 1.0.9</version>
+    <description></description>
+    
+    <scriptfile>script.php</scriptfile>
+    
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <update> <!-- Runs on update -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/update.mysql.utf8.sql</file>
+        </sql>
+    </update>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>associados.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>views</folder>
+        <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+    </files>
+    <media destination="com_associados" folder="media">
+        <folder>js</folder>
+        <folder>css</folder>
+    </media>
+    <languages folder="languages/site">
+        
+			<language tag="en-GB">en-GB/en-GB.com_associados.ini</language>
+			<language tag="pt-BR">pt-BR/pt-BR.com_associados.ini</language>
+    </languages>
+    <administration>
+        <menu img="media/com_associados/images/s_com_associados.png" >COM_ASSOCIADOS</menu>
+        <submenu>
+            
+			<menu link="option=com_associados&amp;view=associados" view="associados" img="media/com_associados/images/s_associados.png" alt="Associados/Associados">COM_ASSOCIADOS_TITLE_ASSOCIADOS</menu>
+
+			<menu link="option=com_categories&amp;extension=com_associados" view="categories" img="media/com_associados/images/s_associados.png" alt="Associados/Categories">COM_ASSOCIADOS_ASSOCIADOS_AMATRA</menu>
+
+			<menu link="option=com_associados&amp;view=situacoes" view="situacoes" img="media/com_associados/images/s_situacoes.png" alt="Associados/Situacoes">COM_ASSOCIADOS_TITLE_SITUACOES</menu>
+
+			<menu link="option=com_associados&amp;view=eventos" view="eventos" img="media/com_associados/images/s_eventos.png" alt="Associados/Eventos">COM_ASSOCIADOS_TITLE_EVENTOS</menu>
+
+			<menu link="option=com_associados&amp;view=cidades" view="cidades" img="media/com_associados/images/s_cidades.png" alt="Associados/Cidades">COM_ASSOCIADOS_TITLE_CIDADES</menu>
+
+			<menu link="option=com_associados&amp;view=estados" view="estados" img="media/com_associados/images/s_estados.png" alt="Associados/Estados">COM_ASSOCIADOS_TITLE_ESTADOS</menu>
+
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>associados.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="languages/administrator">
+            
+			<language tag="en-GB">en-GB/en-GB.com_associados.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_associados.sys.ini</language>
+			<language tag="pt-BR">pt-BR/pt-BR.com_associados.ini</language>
+			<language tag="pt-BR">pt-BR/pt-BR.com_associados.sys.ini</language>
+        </languages>
+    </administration>
+    <config>
+        <fields name="params">
+            <fieldset name="component">
+                <field name="save_history" default="0" />
+            </fieldset>
+        </fields>
+    </config>
+    <plugins>
+        <plugin group="search" plugin="associados"/>
+    </plugins>
+    
+</extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="system" method="upgrade">
+	<name>Associado Redirect</name>
+	<author>Trídia Criação</author>
+	<creationDate>13/01/2017</creationDate>
+	<copyright>Copyright (C) 2015 Trídia Criação. All Rights Reserved</copyright>
+	<license>GNU General Public License version 3 or later</license>
+	<authorEmail>atendimento@tridiacriacao.com</authorEmail>
+	<authorUrl>http://www.tridiacriacao.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Plugin que redireciona o usuário após fazer uma edição em seu perfil</description>
+
+	<files>
+		<filename plugin="associadoredirect">associadoredirect.php</filename>
+	</files>
+
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="usergroup" type="usergrouplist"
+				       label="Usergroup Associados:"
+				       description="Utilizado para captar o ID do usergroup ao qual todos os Associados pertencem e
+				       engatilhar ações (ex: após um user ser deletado, se ele fizer parte do grupo de associados, o
+				       associado terá o seu user_id removido automaticamente)"
+				       multiple="false"/>
+				<field
+						name="url"
+						type="menuitem"
+						disable="separator,alias,heading,url"
+						label="Redirect Page"
+				>
+					<option
+							value="">JDEFAULT
+					</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>
