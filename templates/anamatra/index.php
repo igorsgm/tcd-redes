@@ -45,7 +45,7 @@ if($bg_image = $this->helix3->getParam('body_bg_image')) {
     $body_style .= 'background-size: '. $this->helix3->getParam('body_bg_size') .';';
     $body_style .= 'background-attachment: '. $this->helix3->getParam('body_bg_attachment') .';';
     $body_style .= 'background-position: '. $this->helix3->getParam('body_bg_position') .';';
-    $body_style  = 'body.site {' . $body_style . '}';
+    $body_style  = 'body.site {' . $body_style . '}'; 
 
     $doc->addStyledeclaration( $body_style );
 }
@@ -116,15 +116,15 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
-//    if($favicon = $this->helix3->getParam('favicon')) {
-//        $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
-//    } else {
-//        $doc->addFavicon( $this->helix3->getTemplateUri() . '/images/favicon.ico' );
-//    }
+    if($favicon = $this->helix3->getParam('favicon')) {
+        $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
+    } else {
+        $doc->addFavicon( $this->helix3->getTemplateUri() . '/images/favicon.ico' );
+    }
     ?>
 
     <jdoc:include type="head" />
-
+   
     <?php
 
     $this->helix3->addCSS('bootstrap.min.css, font-awesome.min.css') // CSS Files
@@ -145,7 +145,7 @@ if($custom_js = $this->helix3->getParam('custom_js')) {
         }
 
         $this->helix3->addLess('presets',  'presets/'.$this->helix3->Preset(), array('class'=>'preset'));
-
+        
         //Before Head
         if($before_head = $this->helix3->getParam('before_head')) {
             echo $before_head . "\n";
@@ -174,7 +174,7 @@ $class = preg_replace('/[^a-z,-]/i', '', iconv("UTF-8", "US-ASCII//TRANSLIT", $c
         </div>
     </div>
     <?php
-
+    
     if($this->params->get('compress_css')) {
         $this->helix3->compressCSS();
     }

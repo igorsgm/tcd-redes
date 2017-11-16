@@ -24,12 +24,12 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 	 *
 	 * @since    1.6
 	 */
-	public function edit($key = null, $urlVar = null)
+	public function edit($key = NULL, $urlVar = NULL)
 	{
 		$app = JFactory::getApplication();
 
 		// Get the previous edit id (if any) and the current edit id.
-		$previousId = (int)$app->getUserState('com_dispositivos.edit.dispositivo.id');
+		$previousId = (int) $app->getUserState('com_dispositivos.edit.dispositivo.id');
 		$editId     = $app->input->getInt('id', 0);
 
 		// Set the user id for the user to edit in the session.
@@ -39,12 +39,14 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 		$model = $this->getModel('DispositivoForm', 'DispositivosModel');
 
 		// Check out the item
-		if ($editId) {
+		if ($editId)
+		{
 			$model->checkout($editId);
 		}
 
 		// Check in the previous user.
-		if ($previousId) {
+		if ($previousId)
+		{
 			$model->checkin($previousId);
 		}
 
@@ -60,7 +62,7 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 	 * @throws Exception
 	 * @since  1.6
 	 */
-	public function save($key = null, $urlVar = null)
+	public function save($key = NULL, $urlVar = NULL)
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -75,7 +77,8 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 		// Validate the posted data.
 		$form = $model->getForm();
 
-		if (!$form) {
+		if (!$form)
+		{
 			throw new Exception($model->getError(), 500);
 		}
 
@@ -83,15 +86,20 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 		$data = $model->validate($form, $data);
 
 		// Check for errors.
-		if ($data === false) {
+		if ($data === false)
+		{
 			// Get the validation messages.
 			$errors = $model->getErrors();
 
 			// Push up to three validation messages out to the user.
-			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++) {
-				if ($errors[$i] instanceof Exception) {
+			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
+			{
+				if ($errors[$i] instanceof Exception)
+				{
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
-				} else {
+				}
+				else
+				{
 					$app->enqueueMessage($errors[$i], 'warning');
 				}
 			}
@@ -103,7 +111,7 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 			$app->setUserState('com_dispositivos.edit.dispositivo.data', $jform);
 
 			// Redirect back to the edit screen.
-			$id = (int)$app->getUserState('com_dispositivos.edit.dispositivo.id');
+			$id = (int) $app->getUserState('com_dispositivos.edit.dispositivo.id');
 			$this->setRedirect(JRoute::_('index.php?option=com_dispositivos&view=dispositivoform&layout=edit&id=' . $id, false));
 
 			$this->redirect();
@@ -113,18 +121,20 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 		$return = $model->save($data);
 
 		// Check for errors.
-		if ($return === false) {
+		if ($return === false)
+		{
 			// Save the data in the session.
 			$app->setUserState('com_dispositivos.edit.dispositivo.data', $data);
 
 			// Redirect back to the edit screen.
-			$id = (int)$app->getUserState('com_dispositivos.edit.dispositivo.id');
+			$id = (int) $app->getUserState('com_dispositivos.edit.dispositivo.id');
 			$this->setMessage(JText::sprintf('Save failed', $model->getError()), 'warning');
 			$this->setRedirect(JRoute::_('index.php?option=com_dispositivos&view=dispositivoform&layout=edit&id=' . $id, false));
 		}
 
 		// Check in the profile.
-		if ($return) {
+		if ($return)
+		{
 			$model->checkin($return);
 		}
 
@@ -149,18 +159,19 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 	 *
 	 * @throws Exception
 	 */
-	public function cancel($key = null)
+	public function cancel($key = NULL)
 	{
 		$app = JFactory::getApplication();
 
 		// Get the current edit id.
-		$editId = (int)$app->getUserState('com_dispositivos.edit.dispositivo.id');
+		$editId = (int) $app->getUserState('com_dispositivos.edit.dispositivo.id');
 
 		// Get the model.
 		$model = $this->getModel('DispositivoForm', 'DispositivosModel');
 
 		// Check in the item
-		if ($editId) {
+		if ($editId)
+		{
 			$model->checkin($editId);
 		}
 
@@ -176,39 +187,42 @@ class DispositivosControllerDispositivoForm extends JControllerForm
 	 * @return void
 	 *
 	 * @throws Exception
-	 *
-	 * @since 1.6
+     *
+     * @since 1.6
 	 */
 	public function remove()
-	{
-		$app   = JFactory::getApplication();
-		$model = $this->getModel('DispositivoForm', 'DispositivosModel');
-		$pk    = $app->input->getInt('id');
+    {
+        $app   = JFactory::getApplication();
+        $model = $this->getModel('DispositivoForm', 'DispositivosModel');
+        $pk    = $app->input->getInt('id');
 
-		// Attempt to save the data
-		try {
-			$return = $model->delete($pk);
+        // Attempt to save the data
+        try
+        {
+            $return = $model->delete($pk);
 
-			// Check in the profile
-			$model->checkin($return);
+            // Check in the profile
+            $model->checkin($return);
 
-			// Clear the profile id from the session.
-			$app->setUserState('com_dispositivos.edit.dispositivo.id', null);
+            // Clear the profile id from the session.
+            $app->setUserState('com_dispositivos.edit.dispositivo.id', null);
 
-			$menu = $app->getMenu();
-			$item = $menu->getActive();
-			$url  = (empty($item->link) ? 'index.php?option=com_dispositivos&view=dispositivos' : $item->link);
+            $menu = $app->getMenu();
+            $item = $menu->getActive();
+            $url = (empty($item->link) ? 'index.php?option=com_dispositivos&view=dispositivos' : $item->link);
 
-			// Redirect to the list screen
-			$this->setMessage(JText::_('COM_EXAMPLE_ITEM_DELETED_SUCCESSFULLY'));
-			$this->setRedirect(JRoute::_($url, false));
+            // Redirect to the list screen
+            $this->setMessage(JText::_('COM_EXAMPLE_ITEM_DELETED_SUCCESSFULLY'));
+            $this->setRedirect(JRoute::_($url, false));
 
-			// Flush the data from the session.
-			$app->setUserState('com_dispositivos.edit.dispositivo.data', null);
-		} catch (Exception $e) {
-			$errorType = ($e->getCode() == '404') ? 'error' : 'warning';
-			$this->setMessage($e->getMessage(), $errorType);
-			$this->setRedirect('index.php?option=com_dispositivos&view=dispositivos');
-		}
-	}
+            // Flush the data from the session.
+            $app->setUserState('com_dispositivos.edit.dispositivo.data', null);
+        }
+        catch (Exception $e)
+        {
+            $errorType = ($e->getCode() == '404') ? 'error' : 'warning';
+            $this->setMessage($e->getMessage(), $errorType);
+            $this->setRedirect('index.php?option=com_dispositivos&view=dispositivos');
+        }
+    }
 }

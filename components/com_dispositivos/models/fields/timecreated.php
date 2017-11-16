@@ -40,14 +40,16 @@ class JFormFieldTimecreated extends JFormField
 
 		$time_created = $this->value;
 
-		if (!strtotime($time_created)) {
+		if (!strtotime($time_created))
+		{
 			$time_created = JFactory::getDate()->toSql();
 			$html[]       = '<input type="hidden" name="' . $this->name . '" value="' . $time_created . '" />';
 		}
 
-		$hidden = (boolean)$this->element['hidden'];
+		$hidden = (boolean) $this->element['hidden'];
 
-		if ($hidden == null || !$hidden) {
+		if ($hidden == null || !$hidden)
+		{
 			$jdate       = new JDate($time_created);
 			$pretty_date = $jdate->format(JText::_('DATE_FORMAT_LC2'));
 			$html[]      = "<div>" . $pretty_date . "</div>";

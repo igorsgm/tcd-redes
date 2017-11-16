@@ -9,7 +9,6 @@
  */
 // No direct access
 defined('_JEXEC') or die;
-
 /**
  * Content Component Category Tree
  *
@@ -17,18 +16,18 @@ defined('_JEXEC') or die;
  */
 class DispositivosCategories extends JCategories
 {
-	/**
-	 * Class constructor
-	 *
-	 * @param   array $options Array of options
-	 *
-	 * @since   11.1
-	 */
-	public function __construct($options = array())
-	{
-		$options['table']     = '#__dispositivos';
-		$options['extension'] = 'com_dispositivos';
+    /**
+     * Class constructor
+     *
+     * @param   array  $options  Array of options
+     *
+     * @since   11.1
+     */
+    public function __construct($options = array())
+    {
+        $options['table'] = '#__dispositivos';
+        $options['extension'] = 'com_dispositivos';
 
-		parent::__construct($options);
-	}
+        parent::__construct($options);
+    }
 }

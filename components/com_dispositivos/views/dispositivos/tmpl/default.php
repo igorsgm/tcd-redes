@@ -34,32 +34,32 @@ $canDelete  = $user->authorise('core.delete', 'com_dispositivos');
 		<tr>
 			<?php if (isset($this->items[0]->state)): ?>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $listDirn, $listOrder); ?>
-				</th>
+	<?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.state', $listDirn, $listOrder); ?>
+</th>
 			<?php endif; ?>
 
-			<th class=''>
-				<?php echo JHtml::_('grid.sort', 'COM_DISPOSITIVOS_DISPOSITIVOS_ID', 'a.id', $listDirn, $listOrder); ?>
-			</th>
-			<th class=''>
-				<?php echo JHtml::_('grid.sort', 'COM_DISPOSITIVOS_DISPOSITIVOS_TIPO', 'a.tipo', $listDirn, $listOrder); ?>
-			</th>
-			<th class=''>
-				<?php echo JHtml::_('grid.sort', 'COM_DISPOSITIVOS_DISPOSITIVOS_MODELO', 'a.modelo', $listDirn, $listOrder); ?>
-			</th>
-			<th class=''>
-				<?php echo JHtml::_('grid.sort', 'COM_DISPOSITIVOS_DISPOSITIVOS_SISTEMA_OPERACIONAL', 'a.sistema_operacional', $listDirn, $listOrder); ?>
-			</th>
-			<th class=''>
-				<?php echo JHtml::_('grid.sort', 'COM_DISPOSITIVOS_DISPOSITIVOS_NOME_PROPIERTARIO', 'a.nome_propiertario', $listDirn, $listOrder); ?>
-			</th>
-
-
-			<?php if ($canEdit || $canDelete): ?>
-				<th class="center">
-					<?php echo JText::_('COM_DISPOSITIVOS_DISPOSITIVOS_ACTIONS'); ?>
+							<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_DISPOSITIVOS_DISPOSITIVOS_ID', 'a.id', $listDirn, $listOrder); ?>
 				</th>
-			<?php endif; ?>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_DISPOSITIVOS_DISPOSITIVOS_TIPO', 'a.tipo', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_DISPOSITIVOS_DISPOSITIVOS_MODELO', 'a.modelo', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_DISPOSITIVOS_DISPOSITIVOS_SISTEMA_OPERACIONAL', 'a.sistema_operacional', $listDirn, $listOrder); ?>
+				</th>
+				<th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_DISPOSITIVOS_DISPOSITIVOS_NOME_PROPIERTARIO', 'a.nome_propiertario', $listDirn, $listOrder); ?>
+				</th>
+
+
+							<?php if ($canEdit || $canDelete): ?>
+					<th class="center">
+				<?php echo JText::_('COM_DISPOSITIVOS_DISPOSITIVOS_ACTIONS'); ?>
+				</th>
+				<?php endif; ?>
 
 		</tr>
 		</thead>
@@ -74,26 +74,26 @@ $canDelete  = $user->authorise('core.delete', 'com_dispositivos');
 		<?php foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_dispositivos'); ?>
 
-			<?php if (!$canEdit && $user->authorise('core.edit.own', 'com_dispositivos')): ?>
-				<?php $canEdit = JFactory::getUser()->id == $item->created_by; ?>
-			<?php endif; ?>
+							<?php if (!$canEdit && $user->authorise('core.edit.own', 'com_dispositivos')): ?>
+					<?php $canEdit = JFactory::getUser()->id == $item->created_by; ?>
+				<?php endif; ?>
 
 			<tr class="row<?php echo $i % 2; ?>">
 
 				<?php if (isset($this->items[0]->state)) : ?>
 					<?php $class = ($canChange) ? 'active' : 'disabled'; ?>
 					<td class="center">
-						<a class="btn btn-micro <?php echo $class; ?>" href="<?php echo ($canChange) ? JRoute::_('index.php?option=com_dispositivos&task=dispositivo.publish&id=' . $item->id . '&state=' . (($item->state + 1) % 2), false, 2) : '#'; ?>">
-							<?php if ($item->state == 1): ?>
-								<i class="icon-publish"></i>
-							<?php else: ?>
-								<i class="icon-unpublish"></i>
-							<?php endif; ?>
-						</a>
-					</td>
+	<a class="btn btn-micro <?php echo $class; ?>" href="<?php echo ($canChange) ? JRoute::_('index.php?option=com_dispositivos&task=dispositivo.publish&id=' . $item->id . '&state=' . (($item->state + 1) % 2), false, 2) : '#'; ?>">
+	<?php if ($item->state == 1): ?>
+		<i class="icon-publish"></i>
+	<?php else: ?>
+		<i class="icon-unpublish"></i>
+	<?php endif; ?>
+	</a>
+</td>
 				<?php endif; ?>
 
-				<td>
+								<td>
 
 					<?php echo $item->id; ?>
 				</td>
@@ -102,11 +102,11 @@ $canDelete  = $user->authorise('core.delete', 'com_dispositivos');
 					<?php echo $item->tipo; ?>
 				</td>
 				<td>
-					<?php if (isset($item->checked_out) && $item->checked_out) : ?>
-						<?php echo JHtml::_('jgrid.checkedout', $i, $item->uEditor, $item->checked_out_time, 'dispositivos.', $canCheckin); ?>
-					<?php endif; ?>
-					<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&view=dispositivo&id=' . (int)$item->id); ?>">
-						<?php echo $this->escape($item->modelo); ?></a>
+				<?php if (isset($item->checked_out) && $item->checked_out) : ?>
+					<?php echo JHtml::_('jgrid.checkedout', $i, $item->uEditor, $item->checked_out_time, 'dispositivos.', $canCheckin); ?>
+				<?php endif; ?>
+				<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&view=dispositivo&id='.(int) $item->id); ?>">
+				<?php echo $this->escape($item->modelo); ?></a>
 				</td>
 				<td>
 
@@ -118,13 +118,13 @@ $canDelete  = $user->authorise('core.delete', 'com_dispositivos');
 				</td>
 
 
-				<?php if ($canEdit || $canDelete): ?>
+								<?php if ($canEdit || $canDelete): ?>
 					<td class="center">
 						<?php if ($canEdit): ?>
-							<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivoform.edit&id=' . $item->id, false, 2); ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a>
+							<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivoform.edit&id=' . $item->id, false, 2); ?>" class="btn btn-mini" type="button"><i class="icon-edit" ></i></a>
 						<?php endif; ?>
 						<?php if ($canDelete): ?>
-							<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivoform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button"><i class="icon-trash"></i></a>
+							<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivoform.remove&id=' . $item->id, false, 2); ?>" class="btn btn-mini delete-button" type="button"><i class="icon-trash" ></i></a>
 						<?php endif; ?>
 					</td>
 				<?php endif; ?>
@@ -137,7 +137,7 @@ $canDelete  = $user->authorise('core.delete', 'com_dispositivos');
 	<?php if ($canCreate) : ?>
 		<a href="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivoform.edit&id=0', false, 0); ?>"
 		   class="btn btn-success btn-small"><i
-					class="icon-plus"></i>
+				class="icon-plus"></i>
 			<?php echo JText::_('COM_DISPOSITIVOS_ADD_ITEM'); ?></a>
 	<?php endif; ?>
 
@@ -148,18 +148,18 @@ $canDelete  = $user->authorise('core.delete', 'com_dispositivos');
 	<?php echo JHtml::_('form.token'); ?>
 </form>
 
-<?php if ($canDelete) : ?>
-	<script type="text/javascript">
+<?php if($canDelete) : ?>
+<script type="text/javascript">
 
-		jQuery(document).ready(function () {
-			jQuery('.delete-button').click(deleteItem);
-		});
+	jQuery(document).ready(function () {
+		jQuery('.delete-button').click(deleteItem);
+	});
 
-		function deleteItem() {
+	function deleteItem() {
 
-			if (!confirm("<?php echo JText::_('COM_DISPOSITIVOS_DELETE_MESSAGE'); ?>")) {
-				return false;
-			}
+		if (!confirm("<?php echo JText::_('COM_DISPOSITIVOS_DELETE_MESSAGE'); ?>")) {
+			return false;
 		}
-	</script>
+	}
+</script>
 <?php endif; ?>

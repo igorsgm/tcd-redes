@@ -141,6 +141,7 @@ function makeAjax(data, url, callBack, method) {
 			callBack(data);
 		},
 		error: function () {
+			console.log(url);
 			console.log('miss');
 		}
 	});

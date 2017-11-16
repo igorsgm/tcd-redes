@@ -24,35 +24,26 @@ class DispositivosModelDispositivos extends JModelList
 	/**
 	 * Constructor.
 	 *
-	 * @param   array $config An optional associative array of configuration settings.
+	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
 	 * @see        JController
 	 * @since      1.6
 	 */
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields'])) {
+		if (empty($config['filter_fields']))
+		{
 			$config['filter_fields'] = array(
-				'id',
-				'a.id',
-				'ordering',
-				'a.ordering',
-				'state',
-				'a.state',
-				'created_by',
-				'a.created_by',
-				'modified_by',
-				'a.modified_by',
-				'identificador_aparelho',
-				'a.identificador_aparelho',
-				'tipo',
-				'a.tipo',
-				'modelo',
-				'a.modelo',
-				'sistema_operacional',
-				'a.sistema_operacional',
-				'nome_propiertario',
-				'a.nome_propiertario',
+				'id', 'a.id',
+				'ordering', 'a.ordering',
+				'state', 'a.state',
+				'created_by', 'a.created_by',
+				'modified_by', 'a.modified_by',
+				'identificador_aparelho', 'a.identificador_aparelho',
+				'tipo', 'a.tipo',
+				'modelo', 'a.modelo',
+				'sistema_operacional', 'a.sistema_operacional',
+				'nome_propiertario', 'a.nome_propiertario',
 			);
 		}
 
@@ -64,8 +55,8 @@ class DispositivosModelDispositivos extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param   string $ordering  Elements order
-	 * @param   string $direction Order direction
+	 * @param   string  $ordering   Elements order
+	 * @param   string  $direction  Order direction
 	 *
 	 * @return void
 	 *
@@ -78,10 +69,10 @@ class DispositivosModelDispositivos extends JModelList
 		$app  = Factory::getApplication();
 		$list = $app->getUserState($this->context . '.list');
 
-		$ordering  = isset($list['filter_order']) ? $list['filter_order'] : null;
+		$ordering  = isset($list['filter_order'])     ? $list['filter_order']     : null;
 		$direction = isset($list['filter_order_Dir']) ? $list['filter_order_Dir'] : null;
 
-		$list['limit']     = (int)Factory::getConfig()->get('list_limit', 20);
+		$list['limit']     = (int) Factory::getConfig()->get('list_limit', 20);
 		$list['start']     = $app->input->getInt('start', 0);
 		$list['ordering']  = $ordering;
 		$list['direction'] = $direction;
@@ -92,23 +83,24 @@ class DispositivosModelDispositivos extends JModelList
 		// List state information.
 		parent::populateState($ordering, $direction);
 
-		$app = Factory::getApplication();
+        $app = Factory::getApplication();
 
-		$ordering  = $app->getUserStateFromRequest($this->context . '.ordercol', 'filter_order', $ordering);
-		$direction = $app->getUserStateFromRequest($this->context . '.orderdirn', 'filter_order_Dir', $ordering);
+        $ordering  = $app->getUserStateFromRequest($this->context . '.ordercol', 'filter_order', $ordering);
+        $direction = $app->getUserStateFromRequest($this->context . '.orderdirn', 'filter_order_Dir', $ordering);
 
-		$this->setState('list.ordering', $ordering);
-		$this->setState('list.direction', $direction);
+        $this->setState('list.ordering', $ordering);
+        $this->setState('list.direction', $direction);
 
-		$start = $app->getUserStateFromRequest($this->context . '.limitstart', 'limitstart', 0, 'int');
-		$limit = $app->getUserStateFromRequest($this->context . '.limit', 'limit', 0, 'int');
+        $start = $app->getUserStateFromRequest($this->context . '.limitstart', 'limitstart', 0, 'int');
+        $limit = $app->getUserStateFromRequest($this->context . '.limit', 'limit', 0, 'int');
 
-		if ($limit == 0) {
-			$limit = $app->get('list_limit', 0);
-		}
+        if ($limit == 0)
+        {
+            $limit = $app->get('list_limit', 0);
+        }
 
-		$this->setState('list.limit', $limit);
-		$this->setState('list.start', $start);
+        $this->setState('list.limit', $limit);
+        $this->setState('list.start', $start);
 	}
 
 	/**
@@ -133,7 +125,7 @@ class DispositivosModelDispositivos extends JModelList
 			);
 
 		$query->from('`#__dispositivos` AS a');
-
+		
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS uEditor');
 		$query->join('LEFT', '#__users AS uc ON uc.id=a.checked_out');
@@ -143,36 +135,43 @@ class DispositivosModelDispositivos extends JModelList
 
 		// Join over the created by field 'modified_by'
 		$query->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by');
-
-		if (!Factory::getUser()->authorise('core.edit', 'com_dispositivos')) {
+		
+		if (!Factory::getUser()->authorise('core.edit', 'com_dispositivos'))
+		{
 			$query->where('a.state = 1');
 		}
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 
-		if (!empty($search)) {
-			if (stripos($search, 'id:') === 0) {
-				$query->where('a.id = ' . (int)substr($search, 3));
-			} else {
+		if (!empty($search))
+		{
+			if (stripos($search, 'id:') === 0)
+			{
+				$query->where('a.id = ' . (int) substr($search, 3));
+			}
+			else
+			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
 				$query->where('(categories_2866260.title LIKE ' . $search . '  OR  a.modelo LIKE ' . $search . '  OR  a.sistema_operacional LIKE ' . $search . ' )');
 			}
 		}
-
+		
 
 		// Filtering tipo
 		$filter_tipo = $this->state->get("filter.tipo");
 
-		if ($filter_tipo) {
-			$query->where("a.`tipo` = '" . $db->escape($filter_tipo) . "'");
+		if ($filter_tipo)
+		{
+			$query->where("a.`tipo` = '".$db->escape($filter_tipo)."'");
 		}
 
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');
 		$orderDirn = $this->state->get('list.direction');
 
-		if ($orderCol && $orderDirn) {
+		if ($orderCol && $orderDirn)
+		{
 			$query->order($db->escape($orderCol . ' ' . $orderDirn));
 		}
 
@@ -187,25 +186,27 @@ class DispositivosModelDispositivos extends JModelList
 	public function getItems()
 	{
 		$items = parent::getItems();
+		
+		foreach ($items as $item)
+		{
 
-		foreach ($items as $item) {
+		if (isset($item->tipo) && $item->tipo != '')
+		{
 
-			if (isset($item->tipo) && $item->tipo != '') {
+			$db    = Factory::getDbo();
+			$query = $db->getQuery(true);
 
-				$db    = Factory::getDbo();
-				$query = $db->getQuery(true);
+			$query
+				->select($db->quoteName('title'))
+				->from($db->quoteName('#__categories'))
+				->where('FIND_IN_SET(' . $db->quoteName('id') . ', ' . $db->quote($item->tipo) . ')');
 
-				$query
-					->select($db->quoteName('title'))
-					->from($db->quoteName('#__categories'))
-					->where('FIND_IN_SET(' . $db->quoteName('id') . ', ' . $db->quote($item->tipo) . ')');
+			$db->setQuery($query);
 
-				$db->setQuery($query);
+			$result = $db->loadColumn();
 
-				$result = $db->loadColumn();
-
-				$item->tipo = !empty($result) ? implode(', ', $result) : '';
-			}
+			$item->tipo = !empty($result) ? implode(', ', $result) : '';
+		}
 		}
 
 		return $items;
@@ -223,14 +224,17 @@ class DispositivosModelDispositivos extends JModelList
 		$filters          = $app->getUserState($this->context . '.filter', array());
 		$error_dateformat = false;
 
-		foreach ($filters as $key => $value) {
-			if (strpos($key, '_dateformat') && !empty($value) && $this->isValidDate($value) == null) {
+		foreach ($filters as $key => $value)
+		{
+			if (strpos($key, '_dateformat') && !empty($value) && $this->isValidDate($value) == null)
+			{
 				$filters[$key]    = '';
 				$error_dateformat = true;
 			}
 		}
 
-		if ($error_dateformat) {
+		if ($error_dateformat)
+		{
 			$app->enqueueMessage(JText::_("COM_DISPOSITIVOS_SEARCH_FILTER_DATE_FORMAT"), "warning");
 			$app->setUserState($this->context . '.filter', $filters);
 		}
@@ -241,14 +245,13 @@ class DispositivosModelDispositivos extends JModelList
 	/**
 	 * Checks if a given date is valid and in a specified format (YYYY-MM-DD)
 	 *
-	 * @param   string $date Date to be checked
+	 * @param   string  $date  Date to be checked
 	 *
 	 * @return bool
 	 */
 	private function isValidDate($date)
 	{
 		$date = str_replace('/', '-', $date);
-
 		return (date_create($date)) ? Factory::getDate($date)->format("Y-m-d") : null;
 	}
 }

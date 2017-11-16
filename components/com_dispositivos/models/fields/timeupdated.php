@@ -39,12 +39,16 @@ class JFormFieldTimeupdated extends JFormField
 		$html = array();
 
 		$old_time_updated = $this->value;
-		$hidden           = (boolean)$this->element['hidden'];
+		$hidden           = (boolean) $this->element['hidden'];
 
-		if ($hidden == null || !$hidden) {
-			if (!strtotime($old_time_updated)) {
+		if ($hidden == null || !$hidden)
+		{
+			if (!strtotime($old_time_updated))
+			{
 				$html[] = '-';
-			} else {
+			}
+			else
+			{
 				$jdate       = new JDate($old_time_updated);
 				$pretty_date = $jdate->format(JText::_('DATE_FORMAT_LC2'));
 				$html[]      = "<div>" . $pretty_date . "</div>";

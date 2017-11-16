@@ -51,16 +51,16 @@ class JFormFieldForeignKey extends JFormField
 		$this->table = $this->getAttribute('table');
 
 		// The field that the field will save on the database
-		$this->key_field = (string)$this->getAttribute('key_field');
+		$this->key_field = (string) $this->getAttribute('key_field');
 
 		// The column that the field shows in the input
-		$this->value_field = (string)$this->getAttribute('value_field');
+		$this->value_field = (string) $this->getAttribute('value_field');
 
 		// Flag to identify if the fk_value is multiple
-		$this->value_multiple = (int)$this->getAttribute('value_multiple', 0);
+		$this->value_multiple = (int) $this->getAttribute('value_multiple', 0);
 
-		// Flag to identify if the fk has default order
-		$this->ordering = (int)$this->getAttribute('ordering', 0);
+        // Flag to identify if the fk has default order
+        $this->ordering = (int) $this->getAttribute('ordering', 0);
 
 		// Initialize variables.
 		$html     = '';
@@ -71,21 +71,25 @@ class JFormFieldForeignKey extends JFormField
 		$query = $db->getQuery(true);
 
 		// Support for multiple fields on fk_values
-		if ($this->value_multiple == 1) {
+		if ($this->value_multiple == 1)
+		{
 			// Get the fields for multiple value
-			$this->value_fields = (string)$this->getAttribute('value_field_multiple');
+			$this->value_fields = (string) $this->getAttribute('value_field_multiple');
 			$this->value_fields = explode(',', $this->value_fields);
-			$this->separator    = (string)$this->getAttribute('separator');
+            $this->separator    = (string) $this->getAttribute('separator');
 
-			$fk_value = ' CONCAT(';
+            $fk_value = ' CONCAT(';
 
-			foreach ($this->value_fields as $field) {
-				$fk_value .= $db->quoteName($field) . ', \'' . $this->separator . '\', ';
-			}
+            foreach ($this->value_fields as $field)
+            {
+                $fk_value .= $db->quoteName($field) . ', \'' . $this->separator . '\', ';
+            }
 
-			$fk_value = substr($fk_value, 0, -(strlen($this->separator) + 6));
+            $fk_value = substr($fk_value, 0, -(strlen($this->separator) + 6));
 			$fk_value .= ') AS ' . $db->quoteName($this->value_field);
-		} else {
+		}
+		else
+		{
 			$fk_value = $db->quoteName($this->value_field);
 		}
 
@@ -98,9 +102,10 @@ class JFormFieldForeignKey extends JFormField
 			)
 			->from($this->table);
 
-		if ($this->ordering) {
-			$query->order('ordering ASC');
-		}
+        if ($this->ordering)
+        {
+            $query->order('ordering ASC');
+        }
 
 		$db->setQuery($query);
 		$results = $db->loadObjectList();
@@ -108,30 +113,38 @@ class JFormFieldForeignKey extends JFormField
 		$input_options = 'class="' . $this->getAttribute('class') . '"';
 
 		// Depends of the type of input, the field will show a type or another
-		switch ($this->input_type) {
+		switch ($this->input_type)
+		{
 			case 'list':
 			default:
 				$options = array();
 
 				// Iterate through all the results
-				foreach ($results as $result) {
+				foreach ($results as $result)
+				{
 					$options[] = JHtml::_('select.option', $result->{$this->key_field}, $result->{$this->value_field});
 				}
 
 				$value = $this->value;
 
 				// If the value is a string -> Only one result
-				if (is_string($value)) {
+				if (is_string($value))
+				{
 					$value = array($value);
-				} elseif (is_object($value)) {
+				}
+				elseif (is_object($value))
+				{
 					// If the value is an object, let's get its properties.
 					$value = get_object_vars($value);
 				}
 
 				// If the select is multiple
-				if ($this->multiple) {
+				if ($this->multiple)
+				{
 					$input_options .= 'multiple="multiple"';
-				} else {
+				}
+				else
+				{
 					array_unshift($options, JHtml::_('select.option', '', ''));
 				}
 
@@ -145,16 +158,19 @@ class JFormFieldForeignKey extends JFormField
 	/**
 	 * Wrapper method for getting attributes from the form element
 	 *
-	 * @param   string $attr_name Attribute name
-	 * @param   mixed  $default   Optional value to return if attribute not found
+	 * @param   string  $attr_name  Attribute name
+	 * @param   mixed   $default    Optional value to return if attribute not found
 	 *
 	 * @return mixed The value of the attribute if it exists, null otherwise
 	 */
 	public function getAttribute($attr_name, $default = null)
 	{
-		if (!empty($this->element[$attr_name])) {
+		if (!empty($this->element[$attr_name]))
+		{
 			return $this->element[$attr_name];
-		} else {
+		}
+		else
+		{
 			return $default;
 		}
 	}

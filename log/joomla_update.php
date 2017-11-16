@@ -195,3 +195,14 @@
 2017-08-18T12:31:56+00:00	INFO ::1	update	Excluindo arquivos e pastas removidas.
 2017-08-18T12:31:57+00:00	INFO ::1	update	Limpeza pós-instalação.
 2017-08-18T12:31:57+00:00	INFO ::1	update	A atualização para a versão 3.7.5 está completa.
+2017-11-16T17:58:11+00:00	INFO ::1	update	Atualização iniciada pelo usuário Super User (343). Versão antiga é 3.7.5.
+2017-11-16T17:58:15+00:00	INFO ::1	update	Baixando arquivo de atualização de https://s3-us-west-2.amazonaws.com/joomla-official-downloads/joomladownloads/joomla3/Joomla_3.8.2-Stable-Update_Package.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIZ6S3Q3YQHG57ZRA%2F20171116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20171116T175838Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=80c16d556cb948cacb5c75061e5bff1b196ef292baaa7b35c339191dc5db74cc.
+2017-11-16T17:58:30+00:00	INFO ::1	update	Arquivo Joomla_3.8.2-Stable-Update_Package.zip baixado com sucesso.
+2017-11-16T17:58:30+00:00	INFO ::1	update	Iniciando a instalação da nova versão.
+2017-11-16T17:59:05+00:00	INFO ::1	update	Finalizando instalação.
+2017-11-16T17:59:05+00:00	INFO ::1	update	Executou a consulta do arquivo 3.8.0-2017-07-28. Texto da consulta: ALTER TABLE `#__fields_groups` ADD COLUMN `params` TEXT  NOT NULL  AFTER `orderi.
+2017-11-16T17:59:05+00:00	INFO ::1	update	Executou a consulta do arquivo 3.8.0-2017-07-31. Texto da consulta: INSERT INTO `#__extensions` (`extension_id`, `package_id`, `name`, `type`, `elem.
+2017-11-16T17:59:05+00:00	INFO ::1	update	Executou a consulta do arquivo 3.8.2-2017-10-14. Texto da consulta: ALTER TABLE `#__content` ADD INDEX `idx_alias` (`alias`(191));.
+2017-11-16T17:59:05+00:00	INFO ::1	update	Excluindo arquivos e pastas removidas.
+2017-11-16T17:59:07+00:00	INFO ::1	update	Limpeza pós-instalação.
+2017-11-16T17:59:07+00:00	INFO ::1	update	A atualização para a versão 3.8.2 está completa.

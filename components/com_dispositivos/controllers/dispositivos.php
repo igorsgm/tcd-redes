@@ -20,13 +20,13 @@ class DispositivosControllerDispositivos extends DispositivosController
 	/**
 	 * Proxy for getModel.
 	 *
-	 * @param   string $name   The model name. Optional.
-	 * @param   string $prefix The class prefix. Optional
-	 * @param   array  $config Configuration array for model. Optional
+	 * @param   string  $name    The model name. Optional.
+	 * @param   string  $prefix  The class prefix. Optional
+	 * @param   array   $config  Configuration array for model. Optional
 	 *
-	 * @return object    The model
+	 * @return object	The model
 	 *
-	 * @since    1.6
+	 * @since	1.6
 	 */
 	public function &getModel($name = 'Dispositivos', $prefix = 'DispositivosModel', $config = array())
 	{

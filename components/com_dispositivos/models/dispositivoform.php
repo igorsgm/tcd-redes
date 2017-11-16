@@ -39,9 +39,12 @@ class DispositivosModelDispositivoForm extends JModelForm
 		$app = Factory::getApplication('com_dispositivos');
 
 		// Load state from the request userState on edit or from the passed variable on default
-		if (Factory::getApplication()->input->get('layout') == 'edit') {
+		if (Factory::getApplication()->input->get('layout') == 'edit')
+		{
 			$id = Factory::getApplication()->getUserState('com_dispositivos.edit.dispositivo.id');
-		} else {
+		}
+		else
+		{
 			$id = Factory::getApplication()->input->get('id');
 			Factory::getApplication()->setUserState('com_dispositivos.edit.dispositivo.id', $id);
 		}
@@ -52,7 +55,8 @@ class DispositivosModelDispositivoForm extends JModelForm
 		$params       = $app->getParams();
 		$params_array = $params->toArray();
 
-		if (isset($params_array['item_id'])) {
+		if (isset($params_array['item_id']))
+		{
 			$this->setState('dispositivo.id', $params_array['item_id']);
 		}
 
@@ -70,32 +74,39 @@ class DispositivosModelDispositivoForm extends JModelForm
 	 */
 	public function getItem($id = null)
 	{
-		if ($this->item === null) {
+		if ($this->item === null)
+		{
 			$this->item = false;
 
-			if (empty($id)) {
+			if (empty($id))
+			{
 				$id = $this->getState('dispositivo.id');
 			}
 
 			// Get a level row instance.
 			$table = $this->getTable();
 
-			if ($table !== false && $table->load($id)) {
-				$user    = Factory::getUser();
-				$id      = $table->id;
+			if ($table !== false && $table->load($id))
+			{
+				$user = Factory::getUser();
+				$id   = $table->id;
 				$canEdit = $user->authorise('core.edit', 'com_dispositivos') || $user->authorise('core.create', 'com_dispositivos');
 
-				if (!$canEdit && $user->authorise('core.edit.own', 'com_dispositivos')) {
+				if (!$canEdit && $user->authorise('core.edit.own', 'com_dispositivos'))
+				{
 					$canEdit = $user->id == $table->created_by;
 				}
 
-				if (!$canEdit) {
+				if (!$canEdit)
+				{
 					throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 				}
 
 				// Check published state.
-				if ($published = $this->getState('filter.published')) {
-					if (isset($table->state) && $table->state != $published) {
+				if ($published = $this->getState('filter.published'))
+				{
+					if (isset($table->state) && $table->state != $published)
+					{
 						return $this->item;
 					}
 				}
@@ -103,10 +114,11 @@ class DispositivosModelDispositivoForm extends JModelForm
 				// Convert the JTable to a clean JObject.
 				$properties = $table->getProperties(1);
 				$this->item = ArrayHelper::toObject($properties, 'JObject');
-
-				if (is_object($this->item->tipo)) {
-					$this->item->tipo = ArrayHelper::fromObject($this->item->tipo);
-				}
+				
+		if (is_object($this->item->tipo))
+		{
+			$this->item->tipo = ArrayHelper::fromObject($this->item->tipo);
+		}
 			}
 		}
 
@@ -141,7 +153,8 @@ class DispositivosModelDispositivoForm extends JModelForm
 		$table      = $this->getTable();
 		$properties = $table->getProperties();
 
-		if (!in_array('alias', $properties)) {
+		if (!in_array('alias', $properties))
+		{
 			return null;
 		}
 
@@ -162,15 +175,18 @@ class DispositivosModelDispositivoForm extends JModelForm
 	public function checkin($id = null)
 	{
 		// Get the id.
-		$id = (!empty($id)) ? $id : (int)$this->getState('dispositivo.id');
+		$id = (!empty($id)) ? $id : (int) $this->getState('dispositivo.id');
 
-		if ($id) {
+		if ($id)
+		{
 			// Initialise the table
 			$table = $this->getTable();
 
 			// Attempt to check the row in.
-			if (method_exists($table, 'checkin')) {
-				if (!$table->checkin($id)) {
+			if (method_exists($table, 'checkin'))
+			{
+				if (!$table->checkin($id))
+				{
 					return false;
 				}
 			}
@@ -191,9 +207,10 @@ class DispositivosModelDispositivoForm extends JModelForm
 	public function checkout($id = null)
 	{
 		// Get the user id.
-		$id = (!empty($id)) ? $id : (int)$this->getState('dispositivo.id');
+		$id = (!empty($id)) ? $id : (int) $this->getState('dispositivo.id');
 
-		if ($id) {
+		if ($id)
+		{
 			// Initialise the table
 			$table = $this->getTable();
 
@@ -201,8 +218,10 @@ class DispositivosModelDispositivoForm extends JModelForm
 			$user = Factory::getUser();
 
 			// Attempt to check the row out.
-			if (method_exists($table, 'checkout')) {
-				if (!$table->checkout($user->get('id'), $id)) {
+			if (method_exists($table, 'checkout'))
+			{
+				if (!$table->checkout($user->get('id'), $id))
+				{
 					return false;
 				}
 			}
@@ -232,7 +251,8 @@ class DispositivosModelDispositivoForm extends JModelForm
 			)
 		);
 
-		if (empty($form)) {
+		if (empty($form))
+		{
 			return false;
 		}
 
@@ -250,10 +270,11 @@ class DispositivosModelDispositivoForm extends JModelForm
 	{
 		$data = Factory::getApplication()->getUserState('com_dispositivos.edit.dispositivo.data', array());
 
-		if (empty($data)) {
+		if (empty($data))
+		{
 			$data = $this->getItem();
 		}
-
+		
 
 		return $data;
 	}
@@ -270,27 +291,34 @@ class DispositivosModelDispositivoForm extends JModelForm
 	 */
 	public function save($data)
 	{
-		$id    = (!empty($data['id'])) ? $data['id'] : (int)$this->getState('dispositivo.id');
+		$id    = (!empty($data['id'])) ? $data['id'] : (int) $this->getState('dispositivo.id');
 		$state = (!empty($data['state'])) ? 1 : 0;
 		$user  = Factory::getUser();
 
-		if ($id) {
+		if ($id)
+		{
 			// Check the user can edit this item
 			$authorised = $user->authorise('core.edit', 'com_dispositivos') || $authorised = $user->authorise('core.edit.own', 'com_dispositivos');
-		} else {
+		}
+		else
+		{
 			// Check the user can create new items in this section
 			$authorised = $user->authorise('core.create', 'com_dispositivos');
 		}
 
-		if ($authorised !== true) {
+		if ($authorised !== true)
+		{
 			throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 		}
 
 		$table = $this->getTable();
 
-		if ($table->save($data) === true) {
+		if ($table->save($data) === true)
+		{
 			return $table->id;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
@@ -310,21 +338,25 @@ class DispositivosModelDispositivoForm extends JModelForm
 	{
 		$user = Factory::getUser();
 
-		if (empty($pk)) {
-			$pk = (int)$this->getState('dispositivo.id');
+		if (empty($pk))
+		{
+			$pk = (int) $this->getState('dispositivo.id');
 		}
 
-		if ($pk == 0 || $this->getItem($pk) == null) {
+		if ($pk == 0 || $this->getItem($pk) == null)
+		{
 			throw new Exception(JText::_('COM_DISPOSITIVOS_ITEM_DOESNT_EXIST'), 404);
 		}
 
-		if ($user->authorise('core.delete', 'com_dispositivos') !== true) {
+		if ($user->authorise('core.delete', 'com_dispositivos') !== true)
+		{
 			throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 		}
 
 		$table = $this->getTable();
 
-		if ($table->delete($pk) !== true) {
+		if ($table->delete($pk) !== true)
+		{
 			throw new Exception(JText::_('JERROR_FAILED'), 501);
 		}
 
@@ -342,5 +374,5 @@ class DispositivosModelDispositivoForm extends JModelForm
 
 		return $table !== false;
 	}
-
+	
 }

@@ -1,9 +1,0 @@
-DROP TABLE IF EXISTS `#__ouvidoria_solicitantes`;
-DROP TABLE IF EXISTS `#__ouvidoria_solicitacoes`;
-DROP TABLE IF EXISTS `#__ouvidoria_solicitacoes_tipos`;
-DROP TABLE IF EXISTS `#__ouvidoria_solicitacoes_status`;
-DROP TABLE IF EXISTS `#__ouvidoria_solicitacoes_interacoes`;
-DROP TABLE IF EXISTS `#__ouvidoria_diretorias`;
-DROP TABLE IF EXISTS `#__ouvidoria_diretorias_users_responsaveis`;
-DROP TABLE IF EXISTS `#__ouvidoria_solicitacoes_logs`;
-DROP TABLE IF EXISTS `#__ouvidoria_comentarios`;

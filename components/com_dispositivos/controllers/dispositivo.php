@@ -29,7 +29,7 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 		$app = JFactory::getApplication();
 
 		// Get the previous edit id (if any) and the current edit id.
-		$previousId = (int)$app->getUserState('com_dispositivos.edit.dispositivo.id');
+		$previousId = (int) $app->getUserState('com_dispositivos.edit.dispositivo.id');
 		$editId     = $app->input->getInt('id', 0);
 
 		// Set the user id for the user to edit in the session.
@@ -39,12 +39,14 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 		$model = $this->getModel('Dispositivo', 'DispositivosModel');
 
 		// Check out the item
-		if ($editId) {
+		if ($editId)
+		{
 			$model->checkout($editId);
 		}
 
 		// Check in the previous user.
-		if ($previousId && $previousId !== $editId) {
+		if ($previousId && $previousId !== $editId)
+		{
 			$model->checkin($previousId);
 		}
 
@@ -68,7 +70,8 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 		// Checking if the user can remove object
 		$user = JFactory::getUser();
 
-		if ($user->authorise('core.edit', 'com_dispositivos') || $user->authorise('core.edit.state', 'com_dispositivos')) {
+		if ($user->authorise('core.edit', 'com_dispositivos') || $user->authorise('core.edit.state', 'com_dispositivos'))
+		{
 			$model = $this->getModel('Dispositivo', 'DispositivosModel');
 
 			// Get the user data.
@@ -79,7 +82,8 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 			$return = $model->publish($id, $state);
 
 			// Check for errors.
-			if ($return === false) {
+			if ($return === false)
+			{
 				$this->setMessage(JText::sprintf('Save failed: %s', $model->getError()), 'warning');
 			}
 
@@ -94,13 +98,18 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 			$menu = JFactory::getApplication()->getMenu();
 			$item = $menu->getActive();
 
-			if (!$item) {
+			if (!$item)
+			{
 				// If there isn't any menu item active, redirect to list view
 				$this->setRedirect(JRoute::_('index.php?option=com_dispositivos&view=dispositivos', false));
-			} else {
+			}
+			else
+			{
 				$this->setRedirect(JRoute::_($item->link . $menuitemid, false));
 			}
-		} else {
+		}
+		else
+		{
 			throw new Exception(500);
 		}
 	}
@@ -120,7 +129,8 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 		// Checking if the user can remove object
 		$user = JFactory::getUser();
 
-		if ($user->authorise('core.delete', 'com_dispositivos')) {
+		if ($user->authorise('core.delete', 'com_dispositivos'))
+		{
 			$model = $this->getModel('Dispositivo', 'DispositivosModel');
 
 			// Get the user data.
@@ -130,26 +140,32 @@ class DispositivosControllerDispositivo extends JControllerLegacy
 			$return = $model->delete($id);
 
 			// Check for errors.
-			if ($return === false) {
+			if ($return === false)
+			{
 				$this->setMessage(JText::sprintf('Delete failed', $model->getError()), 'warning');
-			} else {
+			}
+			else
+			{
 				// Check in the profile.
-				if ($return) {
+				if ($return)
+				{
 					$model->checkin($return);
 				}
 
-				$app->setUserState('com_dispositivos.edit.inventory.id', null);
-				$app->setUserState('com_dispositivos.edit.inventory.data', null);
+                $app->setUserState('com_dispositivos.edit.inventory.id', null);
+                $app->setUserState('com_dispositivos.edit.inventory.data', null);
 
-				$app->enqueueMessage(JText::_('COM_DISPOSITIVOS_ITEM_DELETED_SUCCESSFULLY'), 'success');
-				$app->redirect(JRoute::_('index.php?option=com_dispositivos&view=dispositivos', false));
+                $app->enqueueMessage(JText::_('COM_DISPOSITIVOS_ITEM_DELETED_SUCCESSFULLY'), 'success');
+                $app->redirect(JRoute::_('index.php?option=com_dispositivos&view=dispositivos', false));
 			}
 
 			// Redirect to the list screen.
 			$menu = JFactory::getApplication()->getMenu();
 			$item = $menu->getActive();
 			$this->setRedirect(JRoute::_($item->link, false));
-		} else {
+		}
+		else
+		{
 			throw new Exception(500);
 		}
 	}

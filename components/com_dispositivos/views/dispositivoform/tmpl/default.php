@@ -37,33 +37,33 @@ $canEdit = DispositivosHelpersDispositivos::canUserEdit($this->item, $user);
 		<?php else: ?>
 			<h1><?php echo JText::_('COM_DISPOSITIVOS_ADD_ITEM_TITLE'); ?></h1>
 		<?php endif; ?>
-		
+
 		<form id="form-dispositivo"
-		      action="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivo.save'); ?>"
-		      method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
+			  action="<?php echo JRoute::_('index.php?option=com_dispositivos&task=dispositivo.save'); ?>"
+			  method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
 			
-			<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>"/>
-			
-			<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>"/>
-			
-			<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>"/>
-			
-			<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>"/>
-			
-			<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>"/>
+	<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
 
-			<?php echo $this->form->getInput('created_by'); ?>
-			<?php echo $this->form->getInput('modified_by'); ?>
-			<?php echo $this->form->renderField('identificador_aparelho'); ?>
+	<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>" />
 
-			<?php echo $this->form->renderField('tipo'); ?>
+	<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>" />
 
-			<?php echo $this->form->renderField('modelo'); ?>
+	<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>" />
 
-			<?php echo $this->form->renderField('sistema_operacional'); ?>
+	<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>" />
 
-			<?php echo $this->form->renderField('nome_propiertario'); ?>
-			
+				<?php echo $this->form->getInput('created_by'); ?>
+				<?php echo $this->form->getInput('modified_by'); ?>
+	<?php echo $this->form->renderField('identificador_aparelho'); ?>
+
+	<?php echo $this->form->renderField('tipo'); ?>
+
+	<?php echo $this->form->renderField('modelo'); ?>
+
+	<?php echo $this->form->renderField('sistema_operacional'); ?>
+
+	<?php echo $this->form->renderField('nome_propiertario'); ?>
+
 			<div class="control-group">
 				<div class="controls">
 
@@ -79,10 +79,10 @@ $canEdit = DispositivosHelpersDispositivos::canUserEdit($this->item, $user);
 					</a>
 				</div>
 			</div>
-			
+
 			<input type="hidden" name="option" value="com_dispositivos"/>
 			<input type="hidden" name="task"
-			       value="dispositivoform.save"/>
+				   value="dispositivoform.save"/>
 			<?php echo JHtml::_('form.token'); ?>
 		</form>
 	<?php endif; ?>

@@ -23,7 +23,7 @@ use Joomla\Utilities\ArrayHelper;
  */
 class DispositivosModelDispositivo extends JModelItem
 {
-	public $_item;
+    public $_item;
 
 	/**
 	 * Method to auto-populate the model state.
@@ -41,15 +41,19 @@ class DispositivosModelDispositivo extends JModelItem
 		$user = Factory::getUser();
 
 		// Check published state
-		if ((!$user->authorise('core.edit.state', 'com_dispositivos')) && (!$user->authorise('core.edit', 'com_dispositivos'))) {
+		if ((!$user->authorise('core.edit.state', 'com_dispositivos')) && (!$user->authorise('core.edit', 'com_dispositivos')))
+		{
 			$this->setState('filter.published', 1);
 			$this->setState('filter.archived', 2);
 		}
 
 		// Load state from the request userState on edit or from the passed variable on default
-		if (Factory::getApplication()->input->get('layout') == 'edit') {
+		if (Factory::getApplication()->input->get('layout') == 'edit')
+		{
 			$id = Factory::getApplication()->getUserState('com_dispositivos.edit.dispositivo.id');
-		} else {
+		}
+		else
+		{
 			$id = Factory::getApplication()->input->get('id');
 			Factory::getApplication()->setUserState('com_dispositivos.edit.dispositivo.id', $id);
 		}
@@ -60,7 +64,8 @@ class DispositivosModelDispositivo extends JModelItem
 		$params       = $app->getParams();
 		$params_array = $params->toArray();
 
-		if (isset($params_array['item_id'])) {
+		if (isset($params_array['item_id']))
+		{
 			$this->setState('dispositivo.id', $params_array['item_id']);
 		}
 
@@ -73,15 +78,17 @@ class DispositivosModelDispositivo extends JModelItem
 	 * @param   integer $id The id of the object to get.
 	 *
 	 * @return  mixed    Object on success, false on failure.
-	 *
-	 * @throws Exception
+     *
+     * @throws Exception
 	 */
 	public function getItem($id = null)
 	{
-		if ($this->_item === null) {
+		if ($this->_item === null)
+		{
 			$this->_item = false;
 
-			if (empty($id)) {
+			if (empty($id))
+			{
 				$id = $this->getState('dispositivo.id');
 			}
 
@@ -89,10 +96,13 @@ class DispositivosModelDispositivo extends JModelItem
 			$table = $this->getTable();
 
 			// Attempt to load the row.
-			if ($table->load($id)) {
+			if ($table->load($id))
+			{
 				// Check published state.
-				if ($published = $this->getState('filter.published')) {
-					if (isset($table->state) && $table->state != $published) {
+				if ($published = $this->getState('filter.published'))
+				{
+					if (isset($table->state) && $table->state != $published)
+					{
 						throw new Exception(JText::_('COM_DISPOSITIVOS_ITEM_NOT_LOADED'), 403);
 					}
 				}
@@ -103,21 +113,27 @@ class DispositivosModelDispositivo extends JModelItem
 			}
 		}
 
+		
 
-		if (isset($this->_item->created_by)) {
+		if (isset($this->_item->created_by))
+		{
 			$this->_item->created_by_name = Factory::getUser($this->_item->created_by)->name;
 		}
 
-		if (isset($this->_item->modified_by)) {
+		if (isset($this->_item->modified_by))
+		{
 			$this->_item->modified_by_name = Factory::getUser($this->_item->modified_by)->name;
 		}
 
-		if (isset($this->_item->tipo) && $this->_item->tipo != '') {
-			if (is_object($this->_item->tipo)) {
+		if (isset($this->_item->tipo) && $this->_item->tipo != '')
+		{
+			if (is_object($this->_item->tipo))
+			{
 				$this->_item->tipo = ArrayHelper::fromObject($this->_item->tipo);
 			}
 
-			if (is_array($this->_item->tipo)) {
+			if (is_array($this->_item->tipo))
+			{
 				$this->_item->tipo = implode(',', $this->_item->tipo);
 			}
 
@@ -168,9 +184,10 @@ class DispositivosModelDispositivo extends JModelItem
 		$properties = $table->getProperties();
 		$result     = null;
 
-		if (key_exists('alias', $properties)) {
-			$table->load(array('alias' => $alias));
-			$result = $table->id;
+		if (key_exists('alias', $properties))
+		{
+            $table->load(array('alias' => $alias));
+            $result = $table->id;
 		}
 
 		return $result;
@@ -188,15 +205,18 @@ class DispositivosModelDispositivo extends JModelItem
 	public function checkin($id = null)
 	{
 		// Get the id.
-		$id = (!empty($id)) ? $id : (int)$this->getState('dispositivo.id');
+		$id = (!empty($id)) ? $id : (int) $this->getState('dispositivo.id');
 
-		if ($id) {
+		if ($id)
+		{
 			// Initialise the table
 			$table = $this->getTable();
 
 			// Attempt to check the row in.
-			if (method_exists($table, 'checkin')) {
-				if (!$table->checkin($id)) {
+			if (method_exists($table, 'checkin'))
+			{
+				if (!$table->checkin($id))
+				{
 					return false;
 				}
 			}
@@ -217,9 +237,10 @@ class DispositivosModelDispositivo extends JModelItem
 	public function checkout($id = null)
 	{
 		// Get the user id.
-		$id = (!empty($id)) ? $id : (int)$this->getState('dispositivo.id');
+		$id = (!empty($id)) ? $id : (int) $this->getState('dispositivo.id');
 
-		if ($id) {
+		if ($id)
+		{
 			// Initialise the table
 			$table = $this->getTable();
 
@@ -227,8 +248,10 @@ class DispositivosModelDispositivo extends JModelItem
 			$user = Factory::getUser();
 
 			// Attempt to check the row out.
-			if (method_exists($table, 'checkout')) {
-				if (!$table->checkout($user->get('id'), $id)) {
+			if (method_exists($table, 'checkout'))
+			{
+				if (!$table->checkout($user->get('id'), $id))
+				{
 					return false;
 				}
 			}
@@ -268,5 +291,5 @@ class DispositivosModelDispositivo extends JModelItem
 		return $table->delete($id);
 	}
 
-
+	
 }
