@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>Modulo de Boletins</name>
+	<author>Joomla! Project</author>
+	<creationDate>July 2004</creationDate>
+	<copyright>Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>3.0.0</version>
+	<description>Exibi os últimos boletins de acordo com o template escolhido</description>
+	<files>
+		<filename module="mod_boletins">mod_boletins.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_articles_latest.ini</language>
+		<language tag="en-GB">en-GB.mod_articles_latest.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_LATEST_NEWS" />
+	<config>
+		<fields name="params" addfieldpath="/components/com_acymailing/params">
+			<fieldset name="basic">
+				<field name="tempid" type="tempid" label="Template" description="" menu="template" />
+				<field
+					name="count"
+					type="text"
+					label="Contador"
+					description="MOD_LATEST_NEWS_FIELD_COUNT_DESC"
+					default="5"/>
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

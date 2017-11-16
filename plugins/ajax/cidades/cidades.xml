@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0"
+	type="plugin"
+	group="ajax"
+	method="upgrade">
+	<name>Ajax - Cidades</name>
+	<version>1.0</version>
+	<creationDate>May 2015</creationDate>
+	<author>Tridia Criação</author>
+	<authorEmail>atendimento@tridiacriacao.com</authorEmail>
+	<authorUrl>www.tridiacriacao.com</authorUrl>
+	<license>GNU General Public License version 2 or later</license>
+	<copyright>Copyright (C) Trídia Criação 2015 - 2020. All rights reserved.</copyright>
+	<description>Joomla Ajax Cidades Plugin</description>
+
+	<files>
+		<filename plugin="cidades">cidades.php</filename>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="limit"
+					type="list"
+					default="5"
+					label="Limit"
+					description="">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

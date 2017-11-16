@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_AGENDA_FORM_LBL_AGENDA_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="created_by" type="createdby" default="" 
+            label="COM_AGENDA_FORM_LBL_AGENDA_CREATED_BY"
+            description="COM_AGENDA_FORM_DESC_AGENDA_CREATED_BY"  /> 
+
+       <field name="categoria" type="category"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_CATEGORIA"
+            description="COM_AGENDA_FORM_DESC_AGENDA_CATEGORIA" 
+                
+                
+                 required="true" 
+            extension="com_agenda" /> 
+
+ 
+		<field name="filter_categoria" type="category"
+            label="COM_AGENDA_FORM_LBL_AGENDA_CATEGORIA"
+            description="COM_AGENDA_FORM_DESC_AGENDA_CATEGORIA"  extension="com_agenda" show_root="1" onchange="this.form.submit();" /> 
+
+       <field name="nome" type="text"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_NOME"
+            description="COM_AGENDA_FORM_DESC_AGENDA_NOME" 
+                
+                
+                 required="true" 
+            filter="raw" /> 
+
+       <field name="local" type="text"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_LOCAL"
+            description="COM_AGENDA_FORM_DESC_AGENDA_LOCAL" 
+                
+                
+                 required="true" 
+            filter="raw" /> 
+
+       <field name="data_inicio" type="calendar" class="inputbox"
+         required="true" 
+        
+        
+        
+            label="COM_AGENDA_FORM_LBL_AGENDA_DATA_INICIO"
+            description="COM_AGENDA_FORM_DESC_AGENDA_DATA_INICIO" 
+        filter="safehtml" /> 
+
+       <field name="data_fim" type="calendar" class="inputbox"
+        
+        
+        
+        
+            label="COM_AGENDA_FORM_LBL_AGENDA_DATA_FIM"
+            description="COM_AGENDA_FORM_DESC_AGENDA_DATA_FIM" 
+        filter="safehtml" /> 
+
+       <field name="hora_inicio" type="text"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_HORA_INICIO"
+            description="COM_AGENDA_FORM_DESC_AGENDA_HORA_INICIO" 
+                
+                
+                
+            filter="raw" /> 
+
+       <field name="hora_fim" type="text"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_HORA_FIM"
+            description="COM_AGENDA_FORM_DESC_AGENDA_HORA_FIM"     
+            filter="raw" /> 
+
+        <field
+            name="destaque"
+            type="radio"
+            class="btn-group btn-group-yesno radio"
+            default="0"
+            label="Destaque"
+            description="Exibir apenas items em destaque.">
+            <option
+                value="0">JNO</option>
+            <option
+                value="1">JYES</option>
+        </field>    
+
+       <field name="descricao" type="editor"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_DESCRICAO"
+            description="COM_AGENDA_FORM_DESC_AGENDA_DESCRICAO" 
+                
+                
+                
+            cols="100"
+            rows="5"
+            filter="raw" /> 
+
+       <field name="maps" type="textarea"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_MAPS"
+            description="COM_AGENDA_FORM_DESC_AGENDA_MAPS" 
+                
+                
+                
+            cols="100"
+            rows="8"
+            filter="raw" /> 
+
+       <field name="imagem" type="media"
+                
+            label="COM_AGENDA_FORM_LBL_AGENDA_IMAGEM"
+            description="COM_AGENDA_FORM_DESC_AGENDA_IMAGEM" 
+                
+                
+                
+            filter="raw"
+            directory="images/eventos" />
+         <field
+        name="state"
+        type="list"
+        label="JSTATUS"
+        description="JFIELD_PUBLISHED_DESC"
+        class="inputbox"
+        size="1"
+        default="1">
+        <option value="1">JPUBLISHED</option>
+        <option value="0">JUNPUBLISHED</option>
+        <option value="2">JARCHIVED</option>
+        <option value="-2">JTRASHED</option>
+    </field> 
+
+        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" /> 
+
+ </fieldset> 
+
+ <fieldset 
+                        name="accesscontrol">
+                       <field name="asset_id" type="hidden" filter="unset" />
+                       <field name="rules"
+                            type="rules"
+                            label="JFIELD_RULES_LABEL"
+                            translate_label="false"
+                            filter="rules"
+                            validate="rules"
+                            class="inputbox"
+                            component="com_agenda"
+                            section="agenda"
+                        />
+
+	</fieldset>
+
+</form>

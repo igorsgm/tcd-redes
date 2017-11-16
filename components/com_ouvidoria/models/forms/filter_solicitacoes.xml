@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" hint="COM_OUVIDORIA_SEARCH_FILTER_SUBMIT"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string"/>
+
+        <field name="created_at.from" label="COM_OUVIDORIA_LIST_LBL_SOLICITACOES_CREATED_AT_FILTER_FROM" type="calendar" onchange="this.form.submit();" filter="safehtml" class="inputbox" showtime="true" translateformat="true" hint="COM_OUVIDORIA_LIST_LBL_SOLICITACOES_CREATED_AT_FILTER_FROM"/>
+        <field name="created_at.to" label="COM_OUVIDORIA_LIST_LBL_SOLICITACOES_CREATED_AT_FILTER_TO" type="calendar" onchange="this.form.submit();" filter="safehtml" class="inputbox" showtime="true" translateformat="true" hint="COM_OUVIDORIA_LIST_LBL_SOLICITACOES_CREATED_AT_FILTER_TO"/>
+        <field name="id_tipo" type="sql" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ID_TIPO" query="SELECT '' AS `id`, 'COM_OUVIDORIA_SOLICITACOES_ID_TIPO_FILTER' AS `val` UNION SELECT `id`, `nome` AS val FROM `#__ouvidoria_solicitacoes_tipos`" key_field="id" value_field="val" class="inputbox"
+               onchange="this.form.submit()" translate="true"/>
+        <field name="id_diretoria_responsavel" type="sql" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ID_DIRETORIA_RESPONSAVEL" query="SELECT '' AS `id`, 'COM_OUVIDORIA_SOLICITACOES_ID_DIRETORIA_RESPONSAVEL_FILTER' AS `val` UNION SELECT `id`, `nome` AS val FROM `#__ouvidoria_diretorias`"
+               key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+        <field name="status" type="sql" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_STATUS" query="SELECT '' AS `id`, 'COM_OUVIDORIA_SOLICITACOES_STATUS_FILTER' AS `val` UNION SELECT `id`, `nome` AS val FROM `#__ouvidoria_solicitacoes_status`" key_field="id" value_field="val" class="inputbox"
+               onchange="this.form.submit()" translate="true"/>
+
+
+    </fields>
+</form>

@@ -1,0 +1,56 @@
+.esportes-link {
+	padding: 4em 0;
+}
+.esportes-link h3 {
+	margin-bottom: 0.2em !important;
+}
+.esportes-link h3 span { 
+	color: #fff !important;
+}
+.esportes-link .slider-multi .item-slide {
+	margin-top: 0.8em
+}
+.esportes-link .slider-multi .item-slide i {
+	display: inline-block;
+	margin: 0.4em 0;
+	font-size: 4em;
+	color: #26a14d;
+	text-align: center;
+	border-radius: 100%;
+	background-color: #fff;
+	width: 90px;
+	height: 90px;
+	line-height: 90px;
+	padding: 0 !important;
+	border: 1px solid transparent;
+	transition: all 0.5s;
+}
+.esportes-link .slider-multi .item-slide i.mod-natacao:before {
+	font-size: 0.7em;
+	position: relative;
+	top: -0.15em;
+}
+.esportes-link .slider-multi .item-slide span {
+	text-transform: uppercase;
+	font-weight: normal;
+}
+.esportes-link .slick-slide a:before {
+	display: none;
+}
+.esportes-link .slick-slide a:hover i, .esportes-link .slick-slide a:focus i {
+	border: 1px solid white;
+	color: #fff;
+	background-color: #26a14d
+}
+@media (max-width: 767px) {
+	.esportes-link aside .link-page {
+		position: relative;
+		top: 2em;
+	}
+}
+
+@media (max-width: 481px) {
+	.esportes-link aside {
+		text-align: center;
+	}
+}

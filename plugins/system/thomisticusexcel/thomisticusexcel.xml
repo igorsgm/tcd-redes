@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.0.0" type="plugin" group="system" method="upgrade">
+    <name>System - Thomisticus Excel</name>
+    <version>1.0.0</version>
+    <creationDate>August 2017</creationDate>
+    <author>Tridia Criação</author>
+    <authorEmail>producao@tridiacriacao.com</authorEmail>
+    <authorUrl>www.tridiacriacao.com</authorUrl>
+    <license>GNU General Public License version 2 or later</license>
+    <copyright>Copyright (C) Trídia Criação 2017 - 2021. All rights reserved.</copyright>
+    <description>Plugin para exportar o excel da lista de itens de um componente</description>
+
+    <files>
+        <filename plugin="thomisticusexcel">thomisticusexcel.php</filename>
+        <filename type="file">views.xml</filename>
+    </files>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+
+                <field name="enabled" type="subform"
+                       formsource="/plugins/system/thomisticusexcel/views.xml" multiple="true"
+                       layout="joomla.form.field.subform.repeatable-table" groupByFieldset="true"
+                       label="Views habilitadas"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

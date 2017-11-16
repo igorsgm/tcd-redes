@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="2.5">
+    <name>Thomisticus - Library</name>
+    <libraryname>thomisticus</libraryname>
+    <author>Igor Moraes</author>
+    <authorEmail>igor.sgm@gmail.com</authorEmail>
+    <authorUrl>linkedin.com/in/igorsgm/</authorUrl>
+    <copyright>Copyright (C) 2017-2021 Igor Moraes. All rights reserved.</copyright>
+    <creationDate>June 2017</creationDate>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <version>1.0.0</version>
+    <description>Thomisticus 3rd part library for Joomla!</description>
+    <files>
+        <folder>form</folder>
+        <folder>helper</folder>
+        <folder>html</folder>
+        <folder>language</folder>
+        <folder>src</folder>
+        <folder>vendor</folder>
+        <filename>LICENSE</filename>
+        <filename>README.md</filename>
+        <filename>library.php</filename>
+    </files>
+
+    <!-- Medias -->
+    <media destination="thomisticus" folder="media/thomisticus">
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+</extension>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fieldset name="section1" label="Views habilitadas">
+
+        <field name="component" type="sql" label="Componente" class="component-selected"
+               description="Selecione um componente"
+               query="SELECT name, element FROM `#__extensions` WHERE `type` = 'component'" key_field="element"
+               value_field="name"/>
+
+        <field name="view" type="list" default="" label="View" class="view-selected">
+        </field>
+
+
+    </fieldset>
+</form>

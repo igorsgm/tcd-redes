@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+        <field name="ordering"/>
+        <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASHED</option>
+        </field>
+        <field name="created_by_solicitante" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_CREATED_BY_SOLICITANTE" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAOLOG_CREATED_BY_SOLICITANTE" class="inputbox" input_type="list" table="#__ouvidoria_solicitantes" key_field="id"
+               value_field="nome" ordering="1" default="0"/>
+        <field name="updated_at" type="timecreated" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_UPDATED_AT" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAOLOG_UPDATED_AT" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_UPDATED_AT"/>
+        <field name="created_at" type="timecreated" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_CREATED_AT" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAOLOG_CREATED_AT" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_CREATED_AT"/>
+        <field name="id_solicitacao" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_ID_SOLICITACAO" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAOLOG_ID_SOLICITACAO" class="inputbox" input_type="list" table="#__ouvidoria_solicitacoes" key_field="id" value_field="protocolo"
+               ordering="1" required="true" message="É necessário informar a solicitação (protocolo)." default=""/>
+        <field name="id_interacao" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_ID_INTERACAO" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAOLOG_ID_INTERACAO" class="inputbox" input_type="list" table="#__ouvidoria_solicitacoes_interacoes" key_field="id" value_field="nome"
+               ordering="1" required="true" message="É necessário informar a interação." default=""/>
+        <field name="id_comentario" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAOLOG_ID_COMENTARIO" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAOLOG_ID_COMENTARIO" class="inputbox" input_type="list" table="#__ouvidoria_comentarios" key_field="id" value_field="texto" default=""/>
+        <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+    </fieldset>
+</form>

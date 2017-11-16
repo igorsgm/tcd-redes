@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_articles_latest_plus</name>
+	<author>Joomla! Project + Tridia</author>
+	<creationDate>Junho 2016</creationDate>
+	<copyright>Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>3.0.0</version>
+	<description>MOD_LATEST_NEWS_PLUS_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_articles_latest_plus">mod_articles_latest_plus.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+	</files>
+	<languages>
+		<language tag="pt-BR">pt-BR.mod_articles_latest_plus.ini</language>
+		<language tag="pt-BR">pt-BR.mod_articles_latest_plus.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_LATEST_NEWS" />
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="catid"
+					type="category"
+					extension="com_content"
+					multiple="true"
+					size="10"
+					default=""
+					label="JCATEGORY"
+					description="MOD_LATEST_NEWS_PLUS_FIELD_CATEGORY_DESC"
+				>
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
+
+				<field
+					name="count"
+					type="text"
+					default="5"
+					label="MOD_LATEST_NEWS_PLUS_FIELD_COUNT_LABEL"
+					description="MOD_LATEST_NEWS_PLUS_FIELD_COUNT_DESC" />
+
+				<field
+					name="show_featured"
+					type="list"
+					default=""
+					label="MOD_LATEST_NEWS_PLUS_FIELD_FEATURED_LABEL"
+					description="MOD_LATEST_NEWS_PLUS_FIELD_FEATURED_DESC"
+				>
+					<option value="">JSHOW</option>
+					<option value="0">JHIDE</option>
+					<option value="1">MOD_LATEST_NEWS_PLUS_VALUE_ONLY_SHOW_FEATURED</option>
+				</field>
+
+				<field
+					name="ordering"
+					type="list"
+					default="published"
+					label="MOD_LATEST_NEWS_PLUS_FIELD_ORDERING_LABEL"
+					description="MOD_LATEST_NEWS_PLUS_FIELD_ORDERING_DESC"
+				>
+					<option value="c_dsc">MOD_LATEST_NEWS_PLUS_VALUE_RECENT_ADDED</option>
+					<option value="m_dsc">MOD_LATEST_NEWS_PLUS_VALUE_RECENT_MODIFIED</option>
+					<option value="p_dsc">MOD_LATEST_NEWS_PLUS_VALUE_RECENT_PUBLISHED</option>
+					<option value="mc_dsc">MOD_LATEST_NEWS_PLUS_VALUE_RECENT_TOUCHED</option>
+					<option	value="random">MOD_LATEST_NEWS_PLUS_VALUE_RECENT_RAND</option>
+					<option	value="ord_ord">Ordenação</option>
+				</field>
+
+				<field
+					name="user_id"
+					type="list"
+					default="0"
+					label="MOD_LATEST_NEWS_PLUS_FIELD_USER_LABEL"
+					description="MOD_LATEST_NEWS_PLUS_FIELD_USER_DESC"
+				>
+					<option value="0">MOD_LATEST_NEWS_PLUS_VALUE_ANYONE</option>
+					<option value="by_me">MOD_LATEST_NEWS_PLUS_VALUE_ADDED_BY_ME</option>
+					<option value="not_me">MOD_LATEST_NEWS_PLUS_VALUE_NOTADDED_BY_ME</option>
+				</field>
+
+
+				<field name="itemTitle" type="radio" class="btn-group btn-group-yesno radio" default="1" label="Título" description="Exibir ou ocultar o título do item">
+  					<option value="1">Exibir</option>
+ 					<option value="0">Ocultar</option>
+				</field>
+
+				<field name="itemIntroText" type="radio" class="btn-group btn-group-yesno radio" default="1" label="Texto de Introdução" description="Exibir ou ocultar o introtext do conteúdo">
+  					<option value="1">Exibir</option>
+ 					<option value="0">Ocultar</option>
+				</field>
+
+				<field
+					name="itemIntroTextLimit"
+					type="text"
+					default="100"
+					label="Caracteres do introtext"
+					description="Limite inteiro de caracteres do texto de introdução a ser exibido. Mínimo 100." />
+
+				<field name="itemDateCreated" type="radio" class="btn-group btn-group-yesno radio" default="1" label="Data de publicação" description="Exibir ou ocultar a data de publicação do item">
+  					<option value="1">Exibir</option>
+ 					<option value="0">Ocultar</option>
+				</field>
+
+                <field name="itemDateFormat" type="list" default="l, d F Y" label="Formato da Data"
+                       description="O formato de exibição da data, caso esta esteja selecionada para ser exibida. Caso nenhum seja selecionado, o padrão será: Segunda, 01 Janeiro 2016. Caso insira um formato de data customizado (campo abaixo), este será ignorado.">
+                    <option value="l, d F Y">Segunda, 01 Janeiro 2016</option>
+                    <option value="l, d \d\e F \d\e Y">Segunda, 01 de Janeiro de 2016</option>
+                    <option value="d F Y">01 Janeiro 2016</option>
+                    <option value="d \d\e F \d\e Y">01 de Janeiro de 2016</option>
+                    <option value="d/m/y">01/01/16</option>
+                    <option value="d/m/Y">01/01/2016</option>
+                    <option value="d.m.y">01.01.16</option>
+                    <option value="d.m.Y">01.01.2016</option>
+                    <option value="d-m-y">01-01-16</option>
+                    <option value="d-m-Y">01-01-2016</option>
+                </field>
+
+                <field
+                        name="itemCustomDateFormat"
+                        type="text"
+                        default=""
+                        label="Formato de Data Customizado"
+                        description="O formato customizado de exibição da data, caso esta esteja selecionada para ser exibida. Deve ser um formato php. Exemplo: 'd \d\e F \d\e Y', sem as aspas. Este campo pode ser vazio."/>
+
+                <field name="itemImage" type="radio" class="btn-group btn-group-yesno radio" default="1" label="Imagem"
+                       description="Exibir ou ocultar a imagem do item. Esta será a imagem de introdução.">
+                    <option value="1">Exibir</option>
+                    <option value="0">Ocultar</option>
+                </field>
+
+				<field
+					name="itemImageSpan"
+					type="integer"
+					default="4"
+					label="Tamanho da Imagem"
+					description="O tamanho do span da imagem. O padrão (default) é o 4, mas quando a imagem não for exibida (apenas o conteúdo), simplesmente ignorar este campo."
+					first="1"
+					last="12"
+					step="1" />
+
+				<field
+					name="itemContentSpan"
+					type="integer"
+					default="8"
+					label="Tamanho do Conteúdo"
+					description="O tamanho do span do conteúdo. O padrão (default) é o 8, mas quando o conteúdo não for exibido (apenas a imagem), simplesmente ignorar este campo."
+					first="1"
+					last="12"
+					step="1" />
+				<field name="itemReadmore" type="radio" class="btn-group btn-group-yesno radio" default="1" label="Leia mais" description="Exibir ou ocultar o botão leia mais para os itens">
+  					<option value="1">Exibir</option>
+ 					<option value="0">Ocultar</option>
+				</field>
+
+				<field
+	                name="itemReadmoreLabel"
+	                type="text"
+	                default=""
+	                label="Nome do botão"
+	                description="Insira um nome para o botão de leia mais dos itens (padrão Leia mais...) ." />
+			</fieldset>
+
+			
+
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

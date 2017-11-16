@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0"
+           type="plugin"
+           group="ajax"
+           method="upgrade">
+	<name>Ajax - Thomisticus Library</name>
+	<version>1.0</version>
+	<creationDate>June 2017</creationDate>
+	<author>Igor Moraes</author>
+	<authorEmail>igor.sgm@gmail.com</authorEmail>
+	<authorUrl>linkedin.com/in/igorsgm/</authorUrl>
+	<license>GNU General Public License version 2 or later</license>
+	<copyright>Copyright (C) Igor Moraes. All rights reserved.</copyright>
+	<description>Joomla Ajax Thomisticus (Library) Plugin</description>
+
+	<files>
+		<filename plugin="thomisticus">thomisticus.php</filename>
+	</files>
+
+	<config>
+	</config>
+
+</extension>

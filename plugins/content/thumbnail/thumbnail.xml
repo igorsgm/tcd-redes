@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="content">
+	<name>plg_content_thumbnail</name>
+	<author>Company Name</author>
+	<creationDate>March 2014</creationDate>
+	<authorEmail>your@email.com</authorEmail>
+	<authorUrl>www.website.com</authorUrl>
+	<version>3.0.0</version>
+	<description>PLG_CONTENT_ZIMAGE_INTRO_XML_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="thumbnail">thumbnail.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_content_zimage_intro.ini</language>
+		<language tag="en-GB">en-GB.plg_content_zimage_intro.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field name="th_height"
+					type="text"
+					filter="integer"
+					label="Height Imagem de Introdução"
+					default="200"
+					size="5" />
+					
+				<field name="th_width"
+					type="text"
+					filter="integer"
+					label="Width Imagem de Introdução"
+					default="200"
+					size="5" />
+
+				<field name="image_fulltext_height"
+					type="text"
+					filter="integer"
+					label="Height Imagem do Artigo"
+					default="100"
+					size="5" />
+					
+				<field name="image_fulltext_width"
+					type="text"
+					filter="integer"
+					label="Width Imagem do Artigo"
+					default="100"
+					size="5" />
+
+				<field name="categories"
+					type="category"
+					label="Categories"
+					default="0"
+					multiple="true"
+					extension="com_content">
+					
+					<option value="0">All Categories</option>
+					
+				</field>
+				
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+        <field name="ordering"/>
+        <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASHED</option>
+        </field>
+        <field name="checked_out" type="hidden" filter="unset"/>
+        <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+        <field name="created_by" type="createdby" default="0" label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_CREATED_BY"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_CREATED_BY" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_CREATED_BY"/>
+        <field name="modified_by" type="modifiedby" default="0" label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_MODIFIED_BY"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_MODIFIED_BY" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_MODIFIED_BY"/>
+        <field name="updated_at" type="timecreated" label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_UPDATED_AT"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_UPDATED_AT" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_UPDATED_AT"/>
+        <field name="created_at" type="timecreated" label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_CREATED_AT"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_CREATED_AT" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_CREATED_AT"/>
+        <field name="nome" filter="safehtml" type="text" required="true" message="É necessário informar o nome para o solicitante."
+               label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_NOME" description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_NOME"
+               hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_NOME"/>
+        <field name="email" validate="email" type="email" required="true" message="O campo E-mail é obrigatório."
+               label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_EMAIL" description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_EMAIL"
+               hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_EMAIL"/>
+        <field name="cpf" maxlength="14" filter="safehtml" type="text" required="true" message="O campo CPF é obrigatório e único."
+               label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_CPF" description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_CPF"
+               hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_CPF"/>
+        <field name="telefone" maxlength="15" filter="safehtml" type="text" required="true" message="O campo Telefone é obrigatório"
+               label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_TELEFONE" description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_TELEFONE"
+               hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_TELEFONE"/>
+        <field name="id_associado" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_ID_ASSOCIADO"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_ID_ASSOCIADO" class="inputbox" input_type="list" table="#__associados" key_field="id"
+               value_field="nome" default="0"/>
+        <field name="id_user" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_ID_USER"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_ID_USER" class="inputbox" input_type="list" table="#__users" key_field="id"
+               value_field="name" default="0"/>
+        <field name="is_associado" type="radio" buttons="true" class="btn-group btn-group-yesno" default="0" required="true" message="É necessário informar se é associado ou não." label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_IS_ASSOCIADO" description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_IS_ASSOCIADO"
+               hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_IS_ASSOCIADO">
+            <option value="1">COM_OUVIDORIA_SOLICITANTES_IS_ASSOCIADO_OPTION_ON</option>
+            <option value="0">COM_OUVIDORIA_SOLICITANTES_IS_ASSOCIADO_OPTION_OFF</option>
+        </field>
+        <field name="amatra" query="SELECT id, title FROM anmt_categories WHERE extension = 'com_associados' ORDER BY FIELD(`id`, 99) DESC, 'title' ASC" key_field="id" value_field="title" type="sql" required="true"
+               message="É necessário informar o campo &quot;Amatra&quot;, ainda que seja &quot;Não informado&quot;." label="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_AMATRA" description="COM_OUVIDORIA_FORM_DESC_SOLICITANTE_AMATRA" hint="COM_OUVIDORIA_FORM_LBL_SOLICITANTE_AMATRA"/>
+        <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox"
+               size="45" labelclass="control-label"/>
+    </fieldset>
+</form>

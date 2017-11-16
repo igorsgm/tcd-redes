@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+        <field name="ordering"/>
+        <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASHED</option>
+        </field>
+        <field name="checked_out" type="hidden" filter="unset"/>
+        <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+        <field name="updated_at" type="timecreated" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_UPDATED_AT"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_UPDATED_AT" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_UPDATED_AT"/>
+        <field name="created_at" type="timecreated" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_CREATED_AT"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_CREATED_AT" hidden="true" hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_CREATED_AT"/>
+
+        <field name="id_solicitante" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ID_SOLICITANTE"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_ID_SOLICITANTE" class="inputbox" input_type="list" table="#__ouvidoria_solicitantes"
+               key_field="id" value_field="nome" required="true" message="É necessário informar o solicitante." default=""/>
+
+        <field name="id_tipo" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ID_TIPO"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_ID_TIPO" class="inputbox" input_type="list" table="#__ouvidoria_solicitacoes_tipos"
+               key_field="id" value_field="nome" required="true" message="É necessário informar o tipo." default=""/>
+
+        <field name="id_diretoria_responsavel" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ID_DIRETORIA_RESPONSAVEL"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_ID_DIRETORIA_RESPONSAVEL" class="inputbox" input_type="list"
+               table="#__ouvidoria_diretorias" key_field="id" value_field="nome" required="true"
+               message="É necessário informar a diretoria responsável" default=""/>
+
+        <field name="texto" type="textarea" required="true" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_TEXTO"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_TEXTO" hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_TEXTO"
+               message="É necessário informar o texto da solicitação."/>
+        <field name="anexo" type="FileMultiple" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ANEXO"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_ANEXO" hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ANEXO"/>
+        <field name="protocolo" filter="safehtml" type="text" required="true" message="É necessário informar o protocolo da solicitação."
+               label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_PROTOCOLO" description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_PROTOCOLO"
+               hint="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_PROTOCOLO"/>
+        <field name="status" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_STATUS"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_STATUS" class="inputbox" input_type="list" table="#__ouvidoria_solicitacoes_status"
+               key_field="id" value_field="nome" required="true" message="É necessário informar o status da solicitação." default="1"/>
+        <field name="id_user_responsavel_atual" type="foreignkey" label="COM_OUVIDORIA_FORM_LBL_SOLICITACAO_ID_USER_RESPONSAVEL_ATUAL"
+               description="COM_OUVIDORIA_FORM_DESC_SOLICITACAO_ID_USER_RESPONSAVEL_ATUAL" class="inputbox" input_type="list" table="#__users"
+               key_field="id" value_field="name" default="0"/>
+        <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox"
+               size="45" labelclass="control-label"/>
+    </fieldset>
+</form>
